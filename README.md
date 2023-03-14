@@ -1,4 +1,2 @@
 # gianlucafabris.github.io
-gianlucafabris.github.io
-
-[website](https://gianlucafabris.github.io/)
+My website [gianlucafabris.github.io](https://gianlucafabris.github.io/)

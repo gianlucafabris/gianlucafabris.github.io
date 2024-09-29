@@ -130,6 +130,20 @@ a,a:hover{
 #typed,.typed-cursor{
   font-size: 10em;
 }
+/*printables*/
+.canvas3dExperience:has(img){
+  position: relative;
+  min-height: 390px;
+}
+.canvas3dExperience img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+}
 /*header*/
 .navbar.bg-dark{
   background-color: #000000 !important;

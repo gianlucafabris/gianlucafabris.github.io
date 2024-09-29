@@ -11,7 +11,7 @@ let stats;
 let gpumsPanel;
 let particlesPanel;
 let particlesArray = [];
-const active = window.location.hash.includes("#debug");
+const active = window.location.hash.includes("debug") || window.location.search.includes("debug");
 
 export function getDebug(){
     return active;

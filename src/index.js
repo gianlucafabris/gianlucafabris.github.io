@@ -9,6 +9,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home.js';
 import Printables from './pages/Printables.js';
+import Thesis from './pages/Thesis.js';
 
 const root = ReactDOM.createRoot(jQuery("#root")[0]);
 
@@ -20,6 +21,7 @@ root.render(
             <Route path="/index" element={<Home particlesContainer="particles-js" typedContainer="typed" />} /> {/* /#/index */}
             <Route path="/printables" element={<Printables particlesContainer="particles-js" />} /> {/* /#/printables */}
             {/* other pages */}
+            <Route path="/thesis" element={<Thesis particlesContainer="particles-js" />} /> {/* /#/thesis */}
             <Route path="*" element={<Home particlesContainer="particles-js" typedContainer="typed" />} /> {/* /#/no page */}
         </Routes>
     </HashRouter>

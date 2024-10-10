@@ -41,7 +41,7 @@ export default function Thesis({particlesContainer="particles"}){
                     <bootstrap.Col md={12} className={"blur"}>
                         <h2>Resources</h2>
                         <p><a href="https://drive.google.com/file/d/1siuiS3j4CdlGHEfWTbJEy1xZIaBR9Jmx/view?usp=sharing" target="_blank">thesis</a></p>
-                        <p><a href="https://drive.google.com/file/d/1s8N1R6J0_7z_KvksOUQiiY8xEXRoogEy/view?usp=sharing" target="_blank">presentation</a></p>
+                        <p><a href="https://drive.google.com/file/d/1mmctSXk7NwZpZN3yfJdmJLWTZgccr9b0/view?usp=sharing" target="_blank">presentation</a></p>
                         <p><a href="https://github.com/gianlucafabris/BeamNGpy---Road-test" target="_blank">Github - BeamNGpy - Road test</a></p>
                         <p><a href="https://github.com/gianlucafabris/Import-OSM-custom" target="_blank">Github - Import OSM custom</a></p>
                         <p><a href="https://github.com/gianlucafabris/Import-OSM-custom---analysis-BeamNG-and-Hexagon" target="_blank">Github - Import OSM custom - analysis BeamNG and Hexagon</a></p>

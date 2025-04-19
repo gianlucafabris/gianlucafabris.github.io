@@ -1,0 +1,63 @@
+https://eyes.nasa.gov/apps/orrery/#/home
+https://www.solarsystemscope.com/textures
+
+sfondo euclid telescope
+https://www.esa.int/Science_Exploration/Space_Science/Euclid/Zoom_into_the_first_page_of_ESA_Euclid_s_great_cosmic_atlas
+https://stellarium-web.org/
+
+- Sole
+- Mercurio
+- Venere
+- Terra
+  - Luna
+- Marte
+  - Phobos
+  - Deimos
+(- fascia asteroidi / Ceres)
+- Giove (+ anelli)
+  - Io
+  - Europa
+  - Ganimede
+  - Callisto
+  - Amaltea
+  - Thebe
+  - Metis
+  - Adrastea
+  - altre ~80
+- Saturno (+ anelli)
+  - Titano
+  - Encélado
+  - Mimas
+  - Teti
+  - Dione
+  - Rhea
+  - Iapeto
+  - Hyperion
+  - Phoebe
+  - altre ~130
+- Urano (+ anelli)
+  - Titania
+  - Oberon
+  - Umbriel
+  - Ariel
+  - Miranda
+  - altre 22
+- Nettuno (+ anelli)
+  - Tritone
+  - Proteo
+  - Nereide
+  - Larissa
+  - Galatea
+  - Despina
+  - Thalassa
+  - Halimede
+  - altre 7
+(- Plutone)
+  - Caronte
+  - Stige
+  - Notte
+  - Cerbero
+  - Idra
+(- fascia oggetti Kuiper / Makemake)
+(- Eris)
+  - Dysnomia

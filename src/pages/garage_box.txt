@@ -1,0 +1,256 @@
+Garage
+
+AC Cars
+- Shelby Cobra 427 - 50th anniversary
+    https://www.motorionline.com/wp-content/uploads/2014/12/Shelby-Cobra-427-50th-Anniversary-9-e1420028415725.jpg
+    motore V8 NA 7L +700cv
+    cambio 5 manuale
+    trazione RWD
+    peso 1000kg
+    anno 2014
+
+Audi
+- R8 42 V10 PLUS
+    https://it.wikipedia.org/wiki/Audi_R8#/media/File:Audi_R8_V10_%E2%80%93_Frontansicht,_13._M%C3%A4rz_2011,_Wuppertal.jpg
+    motore V10 NA 5.2L 525cv
+    cambio 6 manuale
+    trazione AWD
+    peso 1600kg
+    anno 2007-2013
+
+BMW
+- M3 E92
+    https://upload.wikimedia.org/wikipedia/commons/1/14/BMW_E92_M3_Coup%C3%A9_1.JPG
+    motore V8 NA 4L 420cv
+    cambio 6 manuale
+    trazione RWD
+    peso 1650kg
+    anno 2007-2013
+
+DODGE
+- SRT VIPER
+    https://it.wikipedia.org/wiki/Dodge_Viper_(2012)#/media/File:Red_SRT_Viper_GTS_at_NAIAS_2013_01.jpg
+    motore V10 NA 8.4L 650cv
+    cambio 6 manuale
+    trazione RWD
+    peso 1500kg
+    anno 2013-2017
+
+Honda
+- S2000
+    https://it.wikipedia.org/wiki/Honda_S2000#/media/File:Honda_S2000_schwarz.jpg
+    motore I4 NA 2L 240cv
+    cambio 6 manuale
+    trazione RWD
+    peso 1250kg
+    anno 2006-2009
+
+Lotus
+- Elise 111R
+    https://it.wikipedia.org/wiki/Lotus_Elise#/media/File:Lotus_Elise_S_-_003.jpg
+    motore I4 NA 1.8L 190cv
+    cambio 6 manuale
+    trazione RWD
+    peso 950kg
+    anno 2004-2009
+- Exige S
+    https://en.wikipedia.org/wiki/Lotus_Exige#/media/File:2011_Lotus_Exige_S_260_--_2012_DC.JPG
+    motore I4 Volumetrico 1.8L 220cv
+    cambio 6 manuale
+    trazione RWD
+    peso 950kg
+    anno 2004-2006
+
+Madza
+- RX-7 (FD) Type RS
+    https://it.wikipedia.org/wiki/Mazda_RX-7#/media/File:Mazda-rx7-3rd-generation01.jpg
+    motore R2 Turbo 1.3L 280cv
+    cambio 5 manuale
+    trazione RWD
+    peso 1300kg
+    anno 1999-2002
+
+Mercedes-Benz
+- (AMG GT R)
+    https://www.autoevolution.com/cars/mercedes-benz-amg-gt-r-2016.html#agal_13
+    motore V8 Turbo 4L 585cv
+    cambio 7 automatico
+    trazione RWD
+    peso 1650kg
+    anno 2016-2018
+
+MINI
+- Cooper S R56
+    https://c8.alamy.com/compit/2f26f47/auto-berlina-a-caldo-britannica-compatta-r56-mini-cooper-s-modificata-2f26f47.jpg
+    motore I4 Turbo 1.6L 175cv
+    cambio 6 manuale
+    trazione FWD
+    peso 1200kg
+    anno 2007-2014
+- Cooper S R53
+    https://c8.alamy.com/compit/2f26eck/r53-mini-cooper-s-bmw-mini-di-prima-generazione-con-modifiche-di-sintonizzazione-2f26eck.jpg
+    motore I4 Volumetrico 1.6L 160cv
+    cambio 6 manuale
+    trazione FWD
+    peso 1150kg
+    anno 2001-2006
+
+Mitsubishi
+- (Lancer Evolution V GSR)
+    https://en.wikipedia.org/wiki/Mitsubishi_Lancer_Evolution#/media/File:Mitsubishi_Lancer_Evolution_V_(40158408922)_(cropped).jpg
+    motore I4 Turbo 2L 275cv
+    cambio 5 manuale
+    trazione AWD
+    peso 1250kg
+    anno 1998-1999
+- (Lancer Evolution X GSR)
+    https://en.wikipedia.org/wiki/Mitsubishi_Lancer_Evolution#/media/File:Mitsubishi_Lancer_Evolution_X_front_view_(United_States)_(2).jpg
+    motore I4 Turbo 2L 295cv
+    cambio 6 automatico
+    trazione AWD
+    peso 1600kg
+    anno 2008-2010
+
+Ford
+- Mustang 5^serie
+    https://en.wikipedia.org/wiki/Ford_Mustang_(fifth_generation)#/media/File:2008_Ford_Mustang_Shelby_GT500_Coupe,_front_right,_07-02-2023.jpg
+    motoreV8 Volumetrico 5.4L 505cv
+    cambio 6 manuale
+    trazione RWD
+    peso 1600kg
+    anno 2005-2009
+- Shelby Cobra Mustang GT500
+    https://it.wikipedia.org/wiki/Ford_Mustang_(2014)#/media/File:Shelby_Mustang_(S550)_GT500_1X7A0208.jpg
+    motore V8 Volumetrico 5.2L 760cv
+    cambio 7 automatico
+    trazione RWD
+    peso 1900kg
+    anno 2020-2023
+
+Nissan
+- GT-R Nismo
+    https://it.wikipedia.org/wiki/Nissan_GT-R#/media/File:Nissan_GTR_Nismo_01.jpg
+    motore V6 Turbo 3.8L 600cv
+    cambio 6 automatico
+    trazione AWD
+    peso 1800kg
+    anno 2014-2015
+- Skyline GT-R V-spec II R34
+    https://it.wikipedia.org/wiki/Nissan_Skyline_GT-R#/media/File:Nissan_Skyline_GT-R_R34_V_Spec_II.jpg
+    motore I6 Turbo 2.8L 280cv
+    cambio 6 manuale
+    trazione AWD
+    peso 1550kg
+    anno 1999-2002
+- Skyline GT-R V-spec R33
+    https://it.wikipedia.org/wiki/Nissan_Skyline_GT-R#/media/File:Nissan_Skyline_GTR_V-spec_R33.jpg
+    motore I6 Turbo 2.6L 280cv
+    cambio 5 manuale
+    trazione AWD
+    peso 1550kg
+    anno 1995-1998
+
+Porsche
+- 992.2 GT3 RS
+    https://images-porsche.imgix.net/-/media/AE9CF9F9832D44728135C55791B7B670_3948F4B822D04726BAAE3F0FDFF46DE5_CZ23V20OX0009-911-gt3-rs-front?w=999&ar=647%3A440&q=85&auto=format
+    motore F6 NA 4L 525cv
+    cambio 7 automatico
+    trazione RWD
+    peso 1450kg
+    anno 2025-?
+- 997.1 GT3 RS
+    https://en.wikipedia.org/wiki/Porsche_911_GT3#/media/File:Porsche_911_(997)_GT3_RS_3.6_-_3_quart_avant.jpg
+    motore F6 NA 3.8L 440cv
+    cambio 6 manuale
+    trazione RWD
+    peso 1450kg
+    anno 2006-2011
+
+Rimac
+- (Nevera)
+    https://it.wikipedia.org/wiki/Rimac_Nevera#/media/File:Rimac_Nevera_in_Bridgehampton,_front_right.jpg
+    motore 4x elettrico 1914cv
+    cambio 2x 1 + 2x 2 automatico
+    trazione AWD
+    peso 1975kg
+    anno 2021-?
+
+Subaru
+- Impreza WRX STI
+    https://c8.alamy.com/compit/2n9c87m/2003-subaru-impreza-wrx-sti-in-mostra-all-assemblea-giapponese-tenutasi-presso-il-bicester-heritage-centre-il-29th-gennaio-2023-2n9c87m.jpg
+    motore F4 Turbo 2L 265cv
+    cambio 6 manuale
+    trazione AWD
+    peso 1450kg
+    anno 2003-2005
+- Impreza WRX STI
+    https://cloud.leparking.fr/2021/05/24/01/06/subaru-impreza-2006-06-subaru-impreza-blue-2-0-wrx-sti-wide-track-dccd-type-uk_8127961194.jpg
+    motore F6 Turbo 2.5L 280cv
+    cambio 6 manuale
+    trazione AWD
+    peso 1450kg
+    anno 2006-2007
+- Impreza WRX STI
+    https://www.gallery-aaldering.com/wp-content/uploads/2022/11/subaru-impreza-2-0-turbo-wrx-sti-awd-2002.jpg?v=12
+    motore F4 Turbo 2L 220cv
+    cambio 5 manuale
+    trazione AWD
+    peso 1500kg
+    anno 2000-2002
+
+Toyota
+- Supra Mk4
+    https://it.wikipedia.org/wiki/Toyota_Supra#/media/File:Supra_MKIV_Color_1A1.jpg
+    motore I6 Turbo 3L 325cv
+    cambio 6 manuale
+    trazione RWD
+    peso 1600kg
+    anno 1993-2002
+- GT86 / Subaru BRZ
+    https://it.wikipedia.org/wiki/Toyota_GT86#/media/File:TOYOTA_86_(2016-).jpg
+    motore I4 NA 2L 200cv
+    cambio 6 manuale
+    trazione RWD
+    peso 1300kg
+    anno 2012-2017
+
+
+
+Box/Motorsport
+
+- Formula 3
+    https://media.formula1.com/image/upload/t_16by9Centre/f_auto/q_auto/v1709113712/fom-website/2024/Formula%203/GettyImages-2005215549.jpg
+
+- IndyCar
+    https://digbza2f4g9qo.cloudfront.net/-/media/IndyCar/News/Standard/2024/02/02-06-Rossi2024.png?vs=1&d=20240206T192800Z
+
+- Superkart
+    https://www.gbsuperkarts.com/src/images/classes/msa250.jpg
+
+- Hypercar (LMP1)
+    https://toyotagazooracing.com/-/media/TMC/tgr/global/contents/wec/images/cars/2024/img01_2024.jpg
+
+- GT3
+    https://images.squarespace-cdn.com/content/v1/5e67c0b15cc05f67605d7d5c/ea319713-5ea5-4456-857e-d81dda895a44/porschesport.jpg
+
+- Touring Car
+    https://images.msv.com/high-res/42b99b3b-8ebf-4fd3-9286-0cc36d067ef7.jpg
+
+- NASCAR
+    https://www.pmw-magazine.com/wp-content/uploads/2023/11/FORDReveal_MM_01041.jpg
+
+- Rally (WRC)
+    https://cdn-3.motorsport.com/images/amp/YN19ORj2/s6/esapekka-lappi-janne-ferm-hyun.jpg
+
+- Drag
+    https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUGrne7ZG_c-5rHci896TJu4ekCVy8lyecNQ&s
+
+- Formula Drift
+    https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu8KofLJLW3BVZf4xiCm4z9XgMWJZt99Jnjg&s
+
+- Truck
+    https://giti-tire.eu/thumbs/en/news/new-look-tor-trucks-for-btrc-2024/btrc_design_header-1440x702-q80.jpg
+
+- Air racing
+    https://it.wikipedia.org/wiki/Red_Bull_Air_Race#/media/File:Kirby_Chambliss_racing_in_Perth.jpg
+

@@ -1,14 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css");
 /*
-palette
-// #0079dc azure
-// #368cdf tufts blue
-#6B9EE1 blue gray
-// #79caee baby blue
-#86F5FA eletric blue
-*/
-/*
 brakepoints
 1399px
 1199px
@@ -24,8 +16,9 @@ body{
   text-align: justify;
   background: #000000;
   color: #ffffff;
-  --primary_color: #6b9ee1;
-  --secondary_color: #86f5fa;
+  --primary_color: #22A1F3;
+  --secondary_color: #19D7F2;
+  --tertiary_color: #287EF4;
 }
 ::selection{
   color: #ffffff;

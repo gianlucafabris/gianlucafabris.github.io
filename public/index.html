@@ -10,8 +10,8 @@
         <link rel="icon" type="image/png" sizes="192x192" href="./src/img/favicon/favicon-192x192.png"/>
         <link rel="icon" type="image/png" sizes="512x512" href="./src/img/favicon/favicon-512x512.png"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Gianluca Fabris website">
-        <title>Gianluca Fabris</title>
+        <meta name="description" content="Gianluca Fabris website - {{title}} page, {{description}}">
+        <title>Gianluca Fabris - {{title}}</title>
         <style>
             @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css');
         </style>
@@ -29,7 +29,7 @@
             }
         </style>
         <script>
-            // window.location.href = window.location.host + "/#/home";
+            // window.location.href = window.location.host + "/#/{{title}}";
         </script>
     </head>
     <body>
@@ -39,32 +39,21 @@
                 <header>
                     <div class="row">
                         <div class="col-md-12 blur">
-                            <nav class="navbar navbar-expand navbar-dark bg-dark sticky-top">
-                                <a class="navbar-brand active" href="/index.html">gianlucafabris2001.github.io</a>
-                                <div class="me-auto navbar-nav">
-                                    <a class="nav-link" href="/printables.html">Printables</a>
-                                </div>
-                            </nav>
+                            {{navbar}}
                         </div>
                     </div>
                 </header>
                 <section class="main">
-                    <div class="row">
-                        <div class="col-md-12 blur">
-                            <div class="typedbox">
-                                <span id="typed">I'm coding it.</span>
-                            </div>
-                        </div>
-                        <!-- home -->
-                    </div>
+                    {{content}}
                 </section>
                 <footer>
                     <div class="row">
                         <div class="col-md-12 blur">
                             <div class="footer flex">
-                                <div>Copyright © 2024 Gianluca Fabris | Powered by Github & <a href="/index.html">Gianluca Fabris</a></div>
+                                <div>Copyright © 2024 Gianluca Fabris | Powered by Github & <a href="/home.html">Gianluca Fabris</a></div>
+                                <div><a href="/credits.html">Credits</a></div>
                                 <div class="social">
-                                    <a href="/#/home" aria-label="website"><i class="bi bi-globe2"></i></a>
+                                    <a href="/home.html" aria-label="website"><i class="bi bi-globe2"></i></a>
                                     <a href="https://www.linkedin.com/in/gianluca-fabris-2001/" aria-label="linkedin"><i class="bi bi-linkedin"></i></a>
                                     <a href="https://github.com/gianlucafabris" aria-label="github"><i class="bi bi-github"></i></a>
                                     <a href="https://www.printables.com/@gianlucafabris2001" aria-label="printables">

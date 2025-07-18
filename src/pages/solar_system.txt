@@ -5,59 +5,63 @@ sfondo euclid telescope
 https://www.esa.int/Science_Exploration/Space_Science/Euclid/Zoom_into_the_first_page_of_ESA_Euclid_s_great_cosmic_atlas
 https://stellarium-web.org/
 
-- Sole
-- Mercurio
-- Venere
-- Terra
-  - Luna
-- Marte
+api
+https://ssd.jpl.nasa.gov/api/horizons.api
+https://github.com/OpenSpace/OpenSpace/tree/master/modules/space
+
+- Sun
+- Mercury
+- Venus
+- Earth
+  - Moon
+- Mars
   - Phobos
   - Deimos
-(- fascia asteroidi / Ceres)
-- Giove (+ anelli)
+(- asteroid belt / Ceres)
+- Jupiter (+ rings)
   - Io
   - Europa
-  - Ganimede
+  - Ganymede
   - Callisto
-  - Amaltea
+  - Amalthea
   - Thebe
   - Metis
   - Adrastea
-  - altre ~80
-- Saturno (+ anelli)
-  - Titano
-  - Encélado
+  - ~80 others
+- Saturn (+ rings)
+  - Titan
+  - Enceladus
   - Mimas
-  - Teti
+  - Tethys
   - Dione
   - Rhea
-  - Iapeto
+  - Iapetus
   - Hyperion
   - Phoebe
-  - altre ~130
-- Urano (+ anelli)
+  - ~130 others
+- Uranus (+ rings)
   - Titania
   - Oberon
   - Umbriel
   - Ariel
   - Miranda
-  - altre 22
-- Nettuno (+ anelli)
-  - Tritone
-  - Proteo
-  - Nereide
+  - 22 others
+- Neptune (+ rings)
+  - Triton
+  - Proteus
+  - Nereid
   - Larissa
   - Galatea
   - Despina
   - Thalassa
   - Halimede
-  - altre 7
-(- Plutone)
-  - Caronte
-  - Stige
-  - Notte
-  - Cerbero
-  - Idra
-(- fascia oggetti Kuiper / Makemake)
+  - 7 others
+(- Pluto)
+  - Charon
+  - Styx
+  - Nix
+  - Cerberus
+  - Hydra
+(- Kuiper belt objects / Makemake)
 (- Eris)
   - Dysnomia

@@ -7,7 +7,7 @@ import Stats from 'stats-js';
 import * as Spector from 'spectorjs';
 // import DebugArray from './DebugArray.js';
 
-const active = window.location.hash.includes("debug") || window.location.search.includes("debug");
+const active = window.location.hash.includes("debug") || window.location.search.includes("debug"); //#debug or ?debug
 
 export function getDebug(){
     return active;

@@ -1,7 +1,11 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const template = fs.readFileSync('./public/index.html', 'utf8');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const template = fs.readFileSync('./src/index.html', 'utf8');
 
 const pages = [
     {name: 'home', title: 'home', description: 'WIP'},

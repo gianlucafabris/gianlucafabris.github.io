@@ -2,11 +2,11 @@
   "name": "gianlucafabris",
   "version": "1.0.0",
   "description": "Gianluca Fabris website",
-  "main": "index.js",
   "homepage": "https://gianlucafabris.github.io/",
+  "type": "module",
   "scripts": {
-    "dev": "react-scripts start",
-    "build": "react-scripts build && node generate-static.js"
+    "dev": "vite",
+    "build": "vite build && node generate-static.js"
   },
   "keywords": [],
   "author": "Gianluca Fabris",
@@ -26,12 +26,16 @@
     "react-jquery-plugin": "^1.1.7",
     "react-particles-webgl": "^1.0.10",
     "react-router-dom": "^7.5.0",
-    "react-scripts": "^5.0.1",
     "spectorjs": "^0.9.30",
     "stats-js": "^1.0.1",
     "three": "^0.175.0",
     "tsparticles": "^3.8.1",
     "typed.js": "^2.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "vite": "^7.0.5",
+    "vite-plugin-restart": "^1.0.0"
   },
   "browserslist": {
     "production": [

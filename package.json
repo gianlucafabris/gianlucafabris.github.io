@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node generate-static.js && npx esbuild public/src/style.css --minify --outfile=build/src/style.css"
+    "build": "(rmdir /s /q build || rm -rf build) && vite build && node generate-static.js && npx esbuild public/src/style.css --minify --outfile=build/src/style.css"
   },
   "keywords": [],
   "author": "Gianluca Fabris",

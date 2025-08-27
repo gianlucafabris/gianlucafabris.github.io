@@ -99,9 +99,9 @@ export default function App(){
                     {paths.solarsystem.map(function(path){
                         return <Route key={path} path={path} element={<SolarSystem solarSystemContainer="solarsystem" />} />;
                     })}
-                    {paths.citiesguesser.map(function(path){
+                    {/* {paths.citiesguesser.map(function(path){
                         return <Route key={path} path={path} element={<CitiesGuesser citiesguesserContainer="citiesguesser" />} />;
-                    })}
+                    })} */}
                     {paths.credits.map(function(path){
                         return <Route key={path} path={path} element={<Credits />} />;
                     })}

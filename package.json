@@ -1,0 +1,53 @@
+{
+  "name": "gianlucafabris",
+  "version": "1.0.0",
+  "description": "Gianluca Fabris website",
+  "homepage": "https://gianlucafabris.github.io/",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node generate-static.js && npx esbuild public/src/style.css --minify --outfile=build/src/style.css"
+  },
+  "keywords": [],
+  "author": "Gianluca Fabris",
+  "license": "CC-BY-4.0",
+  "dependencies": {
+    "@react-three/drei": "^10.5.1",
+    "@react-three/fiber": "^9.2.0",
+    "@tsparticles/all": "^3.9.1",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/react": "^3.0.0",
+    "bootstrap": "^5.3.7",
+    "leva": "^0.10.0",
+    "r3f-perf": "^7.2.3",
+    "react": "^19.1.0",
+    "react-bootstrap": "^2.10.10",
+    "react-compare-image": "^3.5.6",
+    "react-dom": "^19.1.0",
+    "react-helmet": "^6.1.0",
+    "react-jquery-plugin": "^1.1.7",
+    "react-router": "^7.7.0",
+    "spectorjs": "^0.9.30",
+    "stats-js": "^1.0.1",
+    "three": "^0.178.0",
+    "typed.js": "^2.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "esbuild": "^0.25.9",
+    "vite": "^7.0.5",
+    "vite-plugin-restart": "^1.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

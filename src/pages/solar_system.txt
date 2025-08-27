@@ -1,0 +1,67 @@
+https://eyes.nasa.gov/apps/orrery/#/home
+https://www.solarsystemscope.com/textures
+
+sfondo euclid telescope
+https://www.esa.int/Science_Exploration/Space_Science/Euclid/Zoom_into_the_first_page_of_ESA_Euclid_s_great_cosmic_atlas
+https://stellarium-web.org/
+
+api
+https://ssd.jpl.nasa.gov/api/horizons.api
+https://github.com/OpenSpace/OpenSpace/tree/master/modules/space
+
+- Sun
+- Mercury
+- Venus
+- Earth
+  - Moon
+- Mars
+  - Phobos
+  - Deimos
+(- asteroid belt / Ceres)
+- Jupiter (+ rings)
+  - Io
+  - Europa
+  - Ganymede
+  - Callisto
+  - Amalthea
+  - Thebe
+  - Metis
+  - Adrastea
+  - ~80 others
+- Saturn (+ rings)
+  - Titan
+  - Enceladus
+  - Mimas
+  - Tethys
+  - Dione
+  - Rhea
+  - Iapetus
+  - Hyperion
+  - Phoebe
+  - ~130 others
+- Uranus (+ rings)
+  - Titania
+  - Oberon
+  - Umbriel
+  - Ariel
+  - Miranda
+  - 22 others
+- Neptune (+ rings)
+  - Triton
+  - Proteus
+  - Nereid
+  - Larissa
+  - Galatea
+  - Despina
+  - Thalassa
+  - Halimede
+  - 7 others
+(- Pluto)
+  - Charon
+  - Styx
+  - Nix
+  - Cerberus
+  - Hydra
+(- Kuiper belt objects / Makemake)
+(- Eris)
+  - Dysnomia

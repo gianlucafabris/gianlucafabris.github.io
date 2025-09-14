@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "(rmdir /s /q build || rm -rf build) && vite build && node generate-static.js && npx esbuild public/src/style.css --minify --outfile=build/src/style.css"
+    "build": "(rmdir /s /q build || rm -rf build) && vite build && node generate-static.js && npx esbuild public/src/style.css --minify --outfile=build/src/style.css && (del /f /q \"build\\src\\debug.css\" || rm -f build/src/debug.css)"
   },
   "keywords": [],
   "author": "Gianluca Fabris",
@@ -22,6 +22,7 @@
     "r3f-perf": "^7.2.3",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
+    "react-bootstrap-icons": "^1.11.6",
     "react-compare-image": "^3.5.6",
     "react-dom": "^19.1.0",
     "react-helmet": "^6.1.0",
@@ -35,7 +36,8 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
     "esbuild": "^0.25.9",
-    "vite": "^7.0.5",
+    "vite": "^7.1.4",
+    "vite-plugin-glsl": "^1.5.1",
     "vite-plugin-restart": "^1.0.0"
   },
   "browserslist": {

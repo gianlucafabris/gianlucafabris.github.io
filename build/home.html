@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
-        <title>Gianluca Fabris - home</title>
-<meta name="description" content="Gianluca Fabris website - home page, WIP" />
-<!-- Open Graph -->
-<meta property="og:title" content="Gianluca Fabris - home" />
-<meta property="og:description" content="Gianluca Fabris website - home page, WIP" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://gianlucafabris.github.io/home.html" />
-<meta property="og:image" content="https://gianlucafabris.github.io/src/img/backgroundImage.png" />
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Gianluca Fabris - home" />
-<meta name="twitter:description" content="Gianluca Fabris website - home page, WIP" />
-<meta name="twitter:image" content="https://gianlucafabris.github.io/src/img/backgroundImage.png" />
         <!-- Metadata  -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,16 +11,84 @@
         <!-- Favicon -->
         <link rel="icon" href="./src/img/favicon/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="./src/img/favicon/favicon-180x180.png" />
-         <!-- Fonts, CSS, JS -->
+        <!-- Fonts, CSS, JS -->
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preload" href="/src/style.css" as="style" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css" integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="/src/style.css" rel="stylesheet"/>
+        <!-- <link rel="preload" href="/index.js" as="script" /> -->
         <script type="module" src="/index.js" defer></script>
-    </head>
+        <!-- Cookies/Analytics -->
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.clarity.ms/" />
+        <link rel="preconnect" href="https://cdn.iubenda.com" />
+        <link rel="preconnect" href="https://embeds.iubenda.com" />
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T4SZ17FKTX"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-T4SZ17FKTX');
+        </script>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5MVDWFR8');</script>
+        <!-- End Google Tag Manager -->
+        <!-- Microsoft Clarity -->
+        <script type="text/javascript">
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "t7jc2bxwb2");
+        </script>
+        <!-- Iubenda -->
+        <script type="text/javascript" src="https://embeds.iubenda.com/widgets/6b65e048-35bb-4c71-a039-72682d28fd9d.js"></script>
+    <title>Gianluca Fabris - home</title>
+    <meta name="description" content="Gianluca Fabris website - home page, WIP" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Gianluca Fabris - home" />
+    <meta property="og:description" content="Gianluca Fabris website - home page, WIP" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gianlucafabris.github.io/home.html" />
+    <meta property="og:image" content="https://gianlucafabris.github.io/src/img/backgroundImage.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gianluca Fabris - home" />
+    <meta name="twitter:description" content="Gianluca Fabris website - home page, WIP" />
+    <meta name="twitter:image" content="https://gianlucafabris.github.io/src/img/backgroundImage.png" />
+</head>
     <body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MVDWFR8"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
         <div id="root">
+            <style>
+                @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css');
+                @import url('/src/style.css');
+                .background{
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100vh;
+                    height: 100dvh;
+                    background: #000000 url('/src/img/background.png') no-repeat center;
+                    background-size: cover;
+                }
+            </style>
+            <script>
+                const pageTitle = "home";
+                if(!pageTitle.includes("{{") && pageTitle.trim() !== ""){
+                    window.location.href = window.location.origin + "/#/" + pageTitle;
+                }
+            </script>
             <div class="background"></div>
             <div class="container">
                 <header>
@@ -65,8 +120,14 @@
                     <div class="row">
                         <div class="col-md-12 blur">
                             <div class="footer flex">
-                                <div>Copyright © 2024 Gianluca Fabris | Powered by Github & <a href="/home.html">Gianluca Fabris</a></div>
-                                <div><a href="/credits.html">Credits</a></div>
+                                <div>Copyright © 2023 Gianluca Fabris | Powered by Github & <a href="/home.html">Gianluca Fabris</a></div>
+                                <div>
+                                    <a href="/credits.html">Credits</a>
+                                    <span> | </span>
+                                    <a href="https://www.iubenda.com/privacy-policy/86179529" class="iubenda-black iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy " target="_blank">Privacy Policy</a>
+                                    <span> | </span>
+                                    <a href="https://www.iubenda.com/privacy-policy/86179529/cookie-policy" class="iubenda-black iubenda-noiframe iubenda-embed iubenda-noiframe " title="Cookie Policy " target="_blank">Cookie Policy</a>
+                                </div>
                                 <div class="social">
                                     <a href="/home.html" aria-label="website"><i class="bi bi-globe2"></i></a>
                                     <a href="https://www.linkedin.com/in/gianluca-fabris-2001/" target="_blank" aria-label="linkedin"><i class="bi bi-linkedin"></i></a>
@@ -78,24 +139,8 @@
                     </div>
                 </footer>
             </div>
-            <style>
-                .background{
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100vh;
-                    height: 100dvh;
-                    background: #000000 url('/src/img/background.png') no-repeat center;
-                    background-size: cover;
-                }
-            </style>
-            <script>
-                const pageTitle = "{{title}}";
-                if(!pageTitle.includes("{{") && pageTitle.trim() !== ""){
-                    window.location.href = window.location.host + "/#/" + pageTitle;
-                }
-            </script>
         </div>
+        <!-- Iubenda -->
+        <!-- <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script> -->
     </body>
 </html>

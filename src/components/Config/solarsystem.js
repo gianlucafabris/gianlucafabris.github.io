@@ -70,10 +70,6 @@ export default {
             elevationBias: -10.935,
             textures: [
                 {
-                    type: "ao",
-                    url: "/src/img/solarsystem/03_Earth/ao.png"
-                },
-                {
                     type: "color",
                     url: "/src/img/solarsystem/03_Earth/color.png"
                 },
@@ -86,16 +82,16 @@ export default {
                     url: "/src/img/solarsystem/03_Earth/displacement.png"
                 },
                 {
-                    type: "normal",
-                    url: "/src/img/solarsystem/03_Earth/normal.png"
-                },
-                {
                     type: "specular",
                     url: "/src/img/solarsystem/03_Earth/specular.png"
                 },
                 {
                     type: "color_atmosphere",
                     url: "/src/img/solarsystem/03_Earth/color_atmosphere.png"
+                },
+                {
+                    type: "emissive_night",
+                    url: "/src/img/solarsystem/03_Earth/emissive_night.png"
                 }
             ],
             satellites: [
@@ -108,24 +104,12 @@ export default {
                     elevationBias: -9.178,
                     textures: [
                         {
-                            type: "ao",
-                            url: "/src/img/solarsystem/03_Earth/Moon/ao.png"
-                        },
-                        {
                             type: "color",
                             url: "/src/img/solarsystem/03_Earth/Moon/color.png"
                         },
                         {
                             type: "displacement",
                             url: "/src/img/solarsystem/03_Earth/Moon/displacement.png"
-                        },
-                        {
-                            type: "normal",
-                            url: "/src/img/solarsystem/03_Earth/Moon/normal.png"
-                        },
-                        {
-                            type: "specular",
-                            url: "/src/img/solarsystem/03_Earth/Moon/specular.png"
                         }
                     ]
                 }

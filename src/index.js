@@ -1,9 +1,7 @@
-import { $ as jQuery } from 'react-jquery-plugin';
-
-import * as bootstrap from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+import { $ as jQuery } from 'react-jquery-plugin';
 import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router';
 

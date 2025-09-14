@@ -1,4 +1,5 @@
-import * as bootstrap from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 import Typing from '../components/Typing.jsx';
 
@@ -20,9 +21,13 @@ export default function Home({ typedContainer="typed" }){
     # #    # ## #    # #   #   #    # #    # #    # ## # #    #                   
     #  ####  ##  ####  #   #   #    #  ####  #####  ## #  ####                    
     `)
+
+    if(import.meta.env.DEV){
+        console.log("Home page");
+    }
     return <>
-        <bootstrap.Row>
-            <bootstrap.Col md={12} className="blur">
+        <Row>
+            <Col md={12} className="blur">
                 {/* TODELETE */}
                 <Typing typedContainer={typedContainer} TypingConfig={TypingConfig} />
                 <style>{`
@@ -30,12 +35,12 @@ export default function Home({ typedContainer="typed" }){
                     font-size: 10em;
                 }
                 `}</style>
-            </bootstrap.Col>
-        </bootstrap.Row>
-        <bootstrap.Row>
-            <bootstrap.Col md={12} className={"blur"}>
-                <p>For now you can visit the following pages (still WIP) <a href="/#/printables">Printables</a>, <a href="/#/thesis">Thesis</a>, <a href="/#/solarsystem">Solar System</a>, <a href="/#/citiesguesser">Cities Guesser</a>, and <a href="https://gianlucafabris.github.io/MultimaterialToSwapGCode/" target="_blank">MultimaterialToSwapGCode</a>.</p>
-            </bootstrap.Col>
-        </bootstrap.Row>
+            </Col>
+        </Row>
+        <Row>
+            <Col md={12} className={"blur"}>
+                <p>For now you can visit the following pages (still WIP) <Link to="/printables">Printables</Link>, <Link to="/thesis">Thesis</Link>, <Link to="/solarsystem">Solar System</Link>, <Link to="/citiesguesser">Cities Guesser</Link>, and <Link to="https://gianlucafabris.github.io/MultimaterialToSwapGCode/" target="_blank">MultimaterialToSwapGCode</Link>.</p>
+            </Col>
+        </Row>
     </>;
 };

@@ -1,4 +1,5 @@
-import * as bootstrap from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 import { useMemo } from 'react';
 import { useLocation } from 'react-router';
@@ -36,28 +37,32 @@ export default function SolarSystem({ solarSystemContainer="solarsystem" }){
         return { selectedPlanet: selectedPlanet, selectedSatellite: selectedSatellite };
     }, [location.search]);
 
+    if(import.meta.env.DEV){
+        console.log("SolarSystem page");
+    }
+
     return <>
-        <bootstrap.Row>
-            <bootstrap.Col md={12} className="blur flex">
+        <Row>
+            <Col md={12} className="blur flex">
                 {/* TODO modale+hover */}
                 {SolarSystemConfig.planets.map(function(p, i){
                     return <div key={p.name}>
                         {p.satellites?.length > 0 ? <details>
-                            <summary><a href={`/#/solarsystem?planet=${p.name.toLowerCase()}`}>{p.name}</a></summary>
+                            <summary><Link to={`/solarsystem?planet=${p.name.toLowerCase()}`}>{p.name}</Link></summary>
                             <ul>
                                 {p.satellites.map(function(s){
-                                    return <li key={s.name}><a href={`/#/solarsystem?planet=${p.name.toLowerCase()}&satellite=${s.name.toLowerCase()}`}>{s.name}</a></li>;
+                                    return <li key={s.name}><Link to={`/solarsystem?planet=${p.name.toLowerCase()}&satellite=${s.name.toLowerCase()}`}>{s.name}</Link></li>;
                                 })}
                             </ul>
-                        </details> : <a href={`/#/solarsystem?planet=${p.name.toLowerCase()}`}>{p.name}</a>}
+                        </details> : <Link to={`/solarsystem?planet=${p.name.toLowerCase()}`}>{p.name}</Link>}
                     </div>
                 })}
-            </bootstrap.Col>
-        </bootstrap.Row>
-        <bootstrap.Row>
-            <bootstrap.Col md={12}>
+            </Col>
+        </Row>
+        <Row>
+            <Col md={12}>
                 <SolarSystemExperience solarSystemContainer={solarSystemContainer} planet={planet} />
-            </bootstrap.Col>
-        </bootstrap.Row>
+            </Col>
+        </Row>
     </>;
 };

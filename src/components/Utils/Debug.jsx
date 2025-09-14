@@ -1,8 +1,10 @@
-import * as bootstrap from 'react-bootstrap';
-
-import { PivotControls } from '@react-three/drei';
-import { useEffect, useRef, useMemo, useCallback, act } from 'react';
+import { $ as jQuery } from 'react-jquery-plugin';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useEffect, useRef, useMemo, useCallback } from 'react';
 import { useLocation } from 'react-router';
+
+//debug
+import { PivotControls } from '@react-three/drei';
 import { Leva, folder, button, useControls } from 'leva';
 import Stats from 'stats-js';
 import * as Spector from 'spectorjs';
@@ -24,16 +26,18 @@ export function DebugPivot({ children, position = [0, 0, 0], rotation = [0, 0, 0
 //Leva
 export function useLevaDebug(name, options){
     // console.log("Leva Debug Initialized", name);
-    const obj = useControls(active ? name : "", active ? options : {}, { collapsed: true }, [active]);
-
-    //folder labels fix
-    setTimeout(function(){
-        jQuery('.leva-c-dosbYs').each(function(){
-            $(this).children().last().text($(this).children().last().text().split("_").pop());
-        });
-    }, 1000);
+    if(import.meta.env.DEV){
+        const obj = useControls(active ? name : "", active ? options : {}, { collapsed: true }, [active]);
     
-    return active ? obj : {};
+        //folder labels fix
+        setTimeout(function(){
+            jQuery('.leva-c-dosbYs').each(function(){
+                $(this).children().last().text($(this).children().last().text().split("_").pop());
+            });
+        }, 1000);
+        
+        return active ? obj : {};
+    }
 };
 
 //Stats
@@ -65,7 +69,7 @@ function useStats(){
 
     useEffect(function(){
         // console.log("Stats initialized");
-        if(active){
+        if(import.meta.env.DEV && active){
             const dp = window.devicePixelRatio;
             window.devicePixelRatio = 2;
             statsRef.current = new Stats();
@@ -125,7 +129,7 @@ let particlesArray = [];
 export function useParticlesPanel(array){
     // console.log("Stats particles panel initialized");
     particlesArray = array;
-    if(active && stats && !particlesPanel){
+    if(import.meta.env.DEV && active && stats && !particlesPanel){
         let dp =  window.devicePixelRatio;
         window.devicePixelRatio = 2;
         let panel = new Stats.Panel("P", "#ffff7f", "#222211");
@@ -159,7 +163,7 @@ function useSpector(){
     
     useEffect(function(){
         // console.log("Spector initialized");
-        if(active){
+        if(import.meta.env.DEV && active){
             const spector = new Spector.Spector();
             requestRef.current = requestAnimationFrame(tick);
             spector.displayUI();
@@ -186,19 +190,21 @@ export function Debug(){
         return queryParams.has("debug");
     }, [location.search]);
 
-    useStats();
-    useSpector();
+    if(import.meta.env.DEV){
+        useStats();
+        useSpector();
+    }
 
     return <>
-        {active ? <Leva oneLineLabels={true} /> : null}
-        {active ? <div id="overlay">
-            <bootstrap.Container>
-                <bootstrap.Row>
+        {import.meta.env.DEV && active ? <Leva oneLineLabels={true} /> : null}
+        {import.meta.env.DEV && active ? <div id="overlay">
+            <Container>
+                <Row>
                     {Array.from({length: 12}).map(function(_, idx){
-                        return <bootstrap.Col md={1} key={idx}><div className="overlay-col"></div></bootstrap.Col>;
+                        return <Col md={1} key={idx}><div className="overlay-col"></div></Col>;
                     })}
-                </bootstrap.Row>
-            </bootstrap.Container>
+                </Row>
+            </Container>
         </div> : null}
     </>;
 };

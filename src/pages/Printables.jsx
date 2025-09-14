@@ -1,49 +1,53 @@
-import * as bootstrap from 'react-bootstrap';
-
+import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router';
 import { useState, useEffect } from "react";
 import ReactCompareImage from 'react-compare-image';
 
 import PrintablesExperience from '../components/Experiences/PrintablesExperience.jsx';
 
 function FlipReactImageCompare({ leftImage, leftImageAlt, leftImageLabel, rightImage1, rightImage1Alt, rightImage1Label, rightImage2, rightImage2Alt, rightImage2Label, interval = 5000}){
-  const [flip, setFlip] = useState(true);
+    const [flip, setFlip] = useState(true);
 
-  useEffect(function(){
-    const timer = setInterval(function(){
-        setFlip(function(prev){
-            return !prev;
-        });
-    }, interval);
-    return function(){
-        clearInterval(timer);
-    };
-  }, [interval]);
+    useEffect(function(){
+        const timer = setInterval(function(){
+            setFlip(function(prev){
+                return !prev;
+            });
+        }, interval);
+        return function(){
+            clearInterval(timer);
+        };
+    }, [interval]);
 
-  return <ReactCompareImage leftImage={leftImage} leftImageAlt={leftImageAlt} leftImageLabel={leftImageLabel} rightImage={flip ? rightImage1 : rightImage2} rightImageAlt={flip ? rightImage1Alt : rightImage2Alt} rightImageLabel={flip ? rightImage1Label : rightImage2Label} />;
+    return <ReactCompareImage leftImage={leftImage} leftImageAlt={leftImageAlt} leftImageLabel={leftImageLabel} rightImage={flip ? rightImage1 : rightImage2} rightImageAlt={flip ? rightImage1Alt : rightImage2Alt} rightImageLabel={flip ? rightImage1Label : rightImage2Label} />;
 }
 
 export default function Printables(){
+    if(import.meta.env.DEV){
+        console.log("Printables page");
+    }
+
     return <>
-        <bootstrap.Row>
-            <bootstrap.Col md={12}>
-                <h1>Printables.com</h1>
-            </bootstrap.Col>
-        </bootstrap.Row>
-        <bootstrap.Row>
-            <bootstrap.Col md={6} className={"blur"}>
+        <Row>
+            <Col md={12}>
+                <h1><Link to="https://www.printables.com" target="_blank">Printables.com</Link></h1>
+            </Col>
+        </Row>
+        <Row>
+            <Col md={6} className={"blur"}>
                 <p>Printables.com is a platform that offers a huge variety of 3D models and a great relationship with the 3D printing community.</p>
                 <p>Printables.com is famous for its extensive database of 3D models. The variety and quality of the models available are impressive and being designed for 3D printing they are easy to print.</p>
                 <p>Printables.com's points system, called Prusameters, adds an element of incentive for users. Accumulating points through interacting with the platform, creating 3D models appreciated by the community or winning contests, leads to advantages such as spools of filament and even free printers. This system not only stimulates user interaction but also rewards their active involvement.</p>
                 <p>Printables.com regularly hosts contests that encourage creativity and innovation among its community of creators. These contests offer users the opportunity to test their skills, compete against other community members, and earn recognition and prizes. These events add an element of community, challenge and engagement to the platform.</p>
                 <p>One of Printables.com's strengths is its commitment to supporting creators. The new system implemented to support creators is a significant step forward in this process. Through this initiative, Printables.com users can offer support to creators who produce high-quality content for the platform. This not only benefits the creators themselves but also enriches the overall offering of templates and content available to users.</p>
                 <p>In summary, Printables.com stands out for its vast database of 3D models, engaging points system, inspiring contests and system to support creators. It is a valuable resource for 3D design professionals and enthusiasts, offering a dynamic, community-focused platform for access to high-quality content and creative expression.</p>
-            </bootstrap.Col>
-            <bootstrap.Col md={6}>
+            </Col>
+            <Col md={6}>
                 <PrintablesExperience printablesContainer={"canvasExperience"}/>
-            </bootstrap.Col>
-        </bootstrap.Row>
-        <bootstrap.Row>
-            <bootstrap.Col md={12} className={"blur"}>
+            </Col>
+        </Row>
+        <Row>
+            <Col md={12} className={"blur"}>
                 <p>Here are some suggestions for improving some pages.</p>
                 <section>
                     <p>Collections and user profile:</p>
@@ -76,7 +80,7 @@ export default function Printables(){
                     </div>
                 </section>
                 <p>By implementing these proposals, the overall experience of users on the platform could be improved, making it easier for them to navigate, share and track their activities and successes.</p>
-            </bootstrap.Col>
-        </bootstrap.Row>
+            </Col>
+        </Row>
     </>;
 };

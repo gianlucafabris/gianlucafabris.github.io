@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://gianlucafabris.github.io/</loc>
+        <priority>1.0</priority>
+    </url><url>
+    <loc>https://gianlucafabris.github.io/home.html</loc>
+    <priority>1</priority>
+</url><url>
+    <loc>https://gianlucafabris.github.io/printables.html</loc>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://gianlucafabris.github.io/thesis.html</loc>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://gianlucafabris.github.io/solarsystem.html</loc>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://gianlucafabris.github.io/credits.html</loc>
+    <priority>0.8</priority>
+</url></urlset>

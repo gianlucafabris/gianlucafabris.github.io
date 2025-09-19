@@ -7,49 +7,22 @@
         <link rel="canonical" href="https://gianlucafabris.github.io/home.html" />
         <meta name="theme-color" content="#000000" />
         <meta name="robots" content="index, follow" />
-        <!-- <link rel="manifest" href="/manifest.json" /> -->
         <!-- Favicon -->
         <link rel="icon" href="./src/img/favicon/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="./src/img/favicon/favicon-180x180.png" />
         <!-- Fonts, CSS, JS -->
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" as="style" />
         <link rel="preload" href="/src/style.css" as="style" />
-        <link href="/src/style.css" rel="stylesheet"/>
-        <!-- <link rel="preload" href="/index.js" as="script" /> -->
-        <script type="module" src="/index.js" defer></script>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
         <!-- Cookies/Analytics -->
+        <link rel="preconnect" href="https://embeds.iubenda.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.clarity.ms/" />
-        <link rel="preconnect" href="https://cdn.iubenda.com" />
-        <link rel="preconnect" href="https://embeds.iubenda.com" />
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T4SZ17FKTX"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-T4SZ17FKTX');
-        </script>
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-5MVDWFR8');</script>
-        <!-- End Google Tag Manager -->
-        <!-- Microsoft Clarity -->
-        <script type="text/javascript">
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "t7jc2bxwb2");
-        </script>
-        <!-- Iubenda -->
-        <script type="text/javascript" src="https://embeds.iubenda.com/widgets/6b65e048-35bb-4c71-a039-72682d28fd9d.js"></script>
-    <title>Gianluca Fabris - solar system</title>
+    <!-- Metadata -->
+    <name>Gianluca Fabris - solar system</title>
     <meta name="description" content="Gianluca Fabris website - solar system page, a representation of the solar system with planets and their orbits" />
     <!-- Open Graph -->
     <meta property="og:title" content="Gianluca Fabris - solar system" />
@@ -62,16 +35,38 @@
     <meta name="twitter:title" content="Gianluca Fabris - solar system" />
     <meta name="twitter:description" content="Gianluca Fabris website - solar system page, a representation of the solar system with planets and their orbits" />
     <meta name="twitter:image" content="https://gianlucafabris.github.io/src/img/backgroundImage.png" />
+    <!-- Cookies/Analytics -->
+    <!-- Iubenda -->
+    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/6b65e048-35bb-4c71-a039-72682d28fd9d.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T4SZ17FKTX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+
+    gtag("config", "G-T4SZ17FKTX");
+    </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "t7jc2bxwb2");
+    </script>
 </head>
     <body>
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MVDWFR8"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
         <div id="root">
+            <script>
+                const pageTitle = "solarsystem";
+                if(!pageTitle.includes("{{")){
+                    window.location.href = window.location.origin + "/#/" + pageTitle;
+                }
+                </script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             <style>
-                @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css');
-                @import url('/src/style.css');
                 .background{
                     position: fixed;
                     top: 0;
@@ -79,16 +74,18 @@
                     width: 100%;
                     height: 100vh;
                     height: 100dvh;
-                    background: #000000 url('/src/img/background.png') no-repeat center;
+                    background: #000000;
+                    background-image: url("/src/img/background.png");
+                    background-repeat: no-repeat;
+                    background-position: center;
                     background-size: cover;
                 }
-            </style>
-            <script>
-                const pageTitle = "solar system";
-                if(!pageTitle.includes("{{") && pageTitle.trim() !== ""){
-                    window.location.href = window.location.origin + "/#/" + pageTitle;
+                @supports(background-image: url("image.webp")){
+                    .background{
+                        background-image: url("/src/img/background.webp");
+                    }
                 }
-            </script>
+            </style>
             <div class="background"></div>
             <div class="container">
                 <header>
@@ -144,16 +141,76 @@
 <div class="row">
     <div class="col-md-12">
         <div class="solarsystem">
-            <div><img src="/src/img/solarsystem/sun.png" alt="" id="sun"/></div>
-            <div><img src="/src/img/solarsystem/mercury.png" alt="" id="mercury"/></div>
-            <div><img src="/src/img/solarsystem/venus.png" alt="" id="venus"/></div>
-            <div><img src="/src/img/solarsystem/earth.png" alt="" id="earth"/></div>
-            <div><img src="/src/img/solarsystem/moon.png" alt="" id="moon"/></div>
-            <div><img src="/src/img/solarsystem/mars.png" alt="" id="mars"/></div>
-            <div><img src="/src/img/solarsystem/jupiter.png" alt="" id="jupiter"/></div>
-            <div><img src="/src/img/solarsystem/saturn.png" alt="" id="saturn"/></div>
-            <div><img src="/src/img/solarsystem/uranus.png" alt="" id="uranus"/></div>
-            <div><img src="/src/img/solarsystem/neptune.png" alt="" id="neptune"/></div>
+            <div>
+                <picture>
+                    <source srcset="/src/img/solarsystem/sun.webp" type="image/webp" />
+                    <source srcset="/src/img/solarsystem/sun.png" type="image/png" />
+                    <img src="/src/img/solarsystem/sun.png" alt="sun" id="sun" loading="lazy" />
+                </picture>
+            </div>
+            <div>
+                <picture>
+                    <source srcset="/src/img/solarsystem/mercury.webp" type="image/webp" />
+                    <source srcset="/src/img/solarsystem/mercury.png" type="image/png" />
+                    <img src="/src/img/solarsystem/mercury.png" alt="mercury" id="mercury" loading="lazy" />
+                </picture>
+            </div>
+            <div>
+                <picture>
+                    <source srcset="/src/img/solarsystem/venus.webp" type="image/webp" />
+                    <source srcset="/src/img/solarsystem/venus.png" type="image/png" />
+                    <img src="/src/img/solarsystem/venus.png" alt="venus" id="venus" loading="lazy" />
+                </picture>
+            </div>
+            <div>
+                <picture>
+                    <source srcset="/src/img/solarsystem/earth.webp" type="image/webp" />
+                    <source srcset="/src/img/solarsystem/earth.png" type="image/png" />
+                    <img src="/src/img/solarsystem/earth.png" alt="earth" id="earth" loading="lazy" />
+                </picture>
+            </div>
+            <div>
+                <picture>
+                    <source srcset="/src/img/solarsystem/moon.webp" type="image/webp" />
+                    <source srcset="/src/img/solarsystem/moon.png" type="image/png" />
+                    <img src="/src/img/solarsystem/moon.png" alt="moon" id="moon" loading="lazy" />
+                </picture>
+            </div>
+            <div>
+                <picture>
+                    <source srcset="/src/img/solarsystem/mars.webp" type="image/webp" />
+                    <source srcset="/src/img/solarsystem/mars.png" type="image/png" />
+                    <img src="/src/img/solarsystem/mars.png" alt="mars" id="mars" loading="lazy" />
+                </picture>
+            </div>
+            <div>
+                <picture>
+                    <source srcset="/src/img/solarsystem/jupiter.webp" type="image/webp" />
+                    <source srcset="/src/img/solarsystem/jupiter.png" type="image/png" />
+                    <img src="/src/img/solarsystem/jupiter.png" alt="jupiter" id="jupiter" loading="lazy" />
+                </picture>
+            </div>
+            <div>
+                <picture>
+                    <source srcset="/src/img/solarsystem/saturn.webp" type="image/webp" />
+                    <source srcset="/src/img/solarsystem/saturn.png" type="image/png" />
+                    <img src="/src/img/solarsystem/saturn.png" alt="saturn" id="saturn" loading="lazy" />
+                </picture>
+            </div>
+            <div>
+                <picture>
+                    <source srcset="/src/img/solarsystem/uranus.webp" type="image/webp" />
+                    <source srcset="/src/img/solarsystem/uranus.png" type="image/png" />
+                    <img src="/src/img/solarsystem/uranus.png" alt="uranus" id="uranus" loading="lazy" />
+                </picture>
+            </div>
+            <div>
+                <picture>
+                    <source srcset="/src/img/solarsystem/neptune.webp" type="image/webp" />
+                    <source srcset="/src/img/solarsystem/neptune.png" type="image/png" />
+                    <img src="/src/img/solarsystem/neptune.png" alt="neptune" id="neptune" loading="lazy" />
+                </picture>
+            </div>
         </div>
     </div>
 </div>
@@ -182,8 +239,10 @@
                     </div>
                 </footer>
             </div>
+            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
         </div>
-        <!-- Iubenda -->
-        <!-- <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script> -->
+        <!-- Fonts, CSS, JS -->
+        <link href="/src/style.css" rel="stylesheet"/>
+        <script type="module" src="/index.js"></script>
     </body>
 </html>

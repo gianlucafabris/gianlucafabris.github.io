@@ -43,7 +43,7 @@ def progressbar(progress, start, prefix="", size=100, out=sys.stdout):
         time_str = f"{int(mins)}m {round(sec,1)}s    "
     else:
         time_str = f"{round(sec,1)}s    "
-    print(f"{prefix}[{u'█'*int(size*progress)}{(' '*int(size*(1-progress)))}] {round(progress*100,1)}% ETE {time_str}", end='\r', file=out, flush=True)
+    print(f"{prefix}[{u"█"*int(size*progress)}{(" "*int(size*(1-progress)))}] {round(progress*100,1)}% ETE {time_str}", end="\r", file=out, flush=True)
     if progress == 1:
         print("\n", flush=True, file=out)
 
@@ -114,21 +114,21 @@ def downloadOSM(id, bbox):
         );
         out geom;
         """
-        response = requests.post("https://overpass-api.de/api/interpreter", data={'data': queryOSM})
+        response = requests.post("https://overpass-api.de/api/interpreter", data={"data": queryOSM})
         sleep(10)
         return response.json()
 
     #queryOSM
     filters = {
-        "nature1": "['landuse'~'allotments|farmland|farmyard|paddy|animal_keeping|flowerbed|forest|logging|greenhouse_horticulture|meadow|orchard|plant_nursery|vineyard|grass|greenfield']['landuse'!~'aquaculture|basin|salt_pond|greenery']",
-        "nature2": "['leisure'~'dog_park|garden|nature_reserve|park|playground']['leisure'!~'disc_golf_course|firepit|fishing|horse_riding|marina|miniature_golf|picnic_table|pitch|slipway|summer_camp|swimming_area']",
-        "nature3": "['natural'~'fell|grassland|heath|moor|scrub|shrubbery|tundra|wood|beach|glacier|mud|water|bare_rock|sand']['natural'!~'tree|tree_row|bay|blowhole|cape|coastline|crevasse|geyser|hot_spring|isthmus|peninsula|reef|shingle|shoal|spring|strait|wetland|arch|arete|blockfield|cave_entrance|cliff|dune|earth_bank|fumarole|hill|peak|ridge|rock|saddle|scree|sinkhole|stone|valley|volcano']",
-        "water": "['waterway'~'river|riverbank|stream|tidal_channel|canal|drain|ditch']['waterway'!~'pressurised|fairway|dock|boatyard|dam|weir|waterfall|lock_gate|soakhole|turning_point|water_point|fuel']",
-        "roads_pedestrian": "['highway'~'pedestrian|track|bridleway|path|cycleway']",
-        "buildings": "['building'~'apartments|barracks|bungalow|cabin|detached|annexe|dormitory|farm|ger|hotel|house|residential|semidetached_house|stilt_house|terrace|trullo|commercial|industrial|office|retail|supermarket|warehouse|religious|cathedral|chapel|church|kingdom_hall|monastery|mosque|presbytery|synagogue|temple|civic|college|fire_station|government|gatehouse|hospital|	kindergarten|museum|public|school|train_station|transportation|university|barn|conservatory|cowshed|farm_auxiliary|greenhouse|stable|livestock|grandstand|pavilion|riding_hall|sports_hall|sports_centre|stadium|allotment_house|hangar|hut|garage|garages|parking|transformer_tower|water_tower|silo|castle|military|pagoda|tower|triumphal_arch|windmill|yes']['building'!~'houseboat|static_caravan|tree_house|kiosk|shrine|bakehouse|bridge|toilets|slurry_tank|sty|boathouse|shed|carport|digester|service|tech_cab|storage_tank|beach_hut|bunker|construction|container|guardhouse|outbuilding|quonset_hut|roof|ruins|ship|tent']",
-        "roads_big": "['highway'~'motorway|trunk|motorway_link|trunk_link|raceway']",
-        "roads_medium": "['highway'~'primary|secondary|primary_link|secondary_link']",
-        "roads_small": "['highway'~'tertiary|unclassified|residential|tertiary_link|living_street|service|road|busway']"
+        "nature1": "[\"landuse\"~\"allotments|farmland|farmyard|paddy|animal_keeping|flowerbed|forest|logging|greenhouse_horticulture|meadow|orchard|plant_nursery|vineyard|grass|greenfield\"][\"landuse\"!~\"aquaculture|basin|salt_pond|greenery\"]",
+        "nature2": "[\"leisure\"~\"dog_park|garden|nature_reserve|park|playground\"][\"leisure\"!~\"disc_golf_course|firepit|fishing|horse_riding|marina|miniature_golf|picnic_table|pitch|slipway|summer_camp|swimming_area\"]",
+        "nature3": "[\"natural\"~\"fell|grassland|heath|moor|scrub|shrubbery|tundra|wood|beach|glacier|mud|water|bare_rock|sand\"][\"natural\"!~\"tree|tree_row|bay|blowhole|cape|coastline|crevasse|geyser|hot_spring|isthmus|peninsula|reef|shingle|shoal|spring|strait|wetland|arch|arete|blockfield|cave_entrance|cliff|dune|earth_bank|fumarole|hill|peak|ridge|rock|saddle|scree|sinkhole|stone|valley|volcano\"]",
+        "water": "[\"waterway\"~\"river|riverbank|stream|tidal_channel|canal|drain|ditch\"][\"waterway\"!~\"pressurised|fairway|dock|boatyard|dam|weir|waterfall|lock_gate|soakhole|turning_point|water_point|fuel\"]",
+        "roads_pedestrian": "[\"highway\"~\"pedestrian|track|bridleway|path|cycleway\"]",
+        "buildings": "[\"building\"~\"apartments|barracks|bungalow|cabin|detached|annexe|dormitory|farm|ger|hotel|house|residential|semidetached_house|stilt_house|terrace|trullo|commercial|industrial|office|retail|supermarket|warehouse|religious|cathedral|chapel|church|kingdom_hall|monastery|mosque|presbytery|synagogue|temple|civic|college|fire_station|government|gatehouse|hospital|kindergarten|museum|public|school|train_station|transportation|university|barn|conservatory|cowshed|farm_auxiliary|greenhouse|stable|livestock|grandstand|pavilion|riding_hall|sports_hall|sports_centre|stadium|allotment_house|hangar|hut|garage|garages|parking|transformer_tower|water_tower|silo|castle|military|pagoda|tower|triumphal_arch|windmill|yes\"][\"building\"!~\"houseboat|static_caravan|tree_house|kiosk|shrine|bakehouse|bridge|toilets|slurry_tank|sty|boathouse|shed|carport|digester|service|tech_cab|storage_tank|beach_hut|bunker|construction|container|guardhouse|outbuilding|quonset_hut|roof|ruins|ship|tent\"]",
+        "roads_big": "[\"highway\"~\"motorway|trunk|motorway_link|trunk_link|raceway\"]",
+        "roads_medium": "[\"highway\"~\"primary|secondary|primary_link|secondary_link\"]",
+        "roads_small": "[\"highway\"~\"tertiary|unclassified|residential|tertiary_link|living_street|service|road|busway\"]"
     }
     #import osm
     print("Loading OSM data...")
@@ -145,7 +145,7 @@ def downloadOSM(id, bbox):
         relation({id - 3600000000});
         out geom;
         """
-        response = requests.post("https://overpass-api.de/api/interpreter", data={'data': queryOSM})
+        response = requests.post("https://overpass-api.de/api/interpreter", data={"data": queryOSM})
         responses["bounds"] = response.json()
 
     data["nature"] = responses["nature1"]["elements"] + responses["nature2"]["elements"] + responses["nature3"]["elements"]
@@ -284,38 +284,38 @@ def generateColor(scale, textureSize, tiles, bbox_norm, city, bounds_geom):
         pts_str = " ".join(f"{x:.2f},{y:.2f}" for (x,y) in pts)
         if len(geometry) >= 3 and geometry[0] == geometry[-1]:
             attrib = {
-                'points': pts_str,
-                'stroke-linejoin': 'round',
-                'stroke-linecap': 'round'
+                "points": pts_str,
+                "stroke-linejoin": "round",
+                "stroke-linecap": "round"
             }
             if style["fill"] != "none":
-                attrib['fill'] = style["fill"]
-                attrib['stroke'] = style["stroke"]
-                attrib['stroke-width'] = str(style["stroke_width"])
+                attrib["fill"] = style["fill"]
+                attrib["stroke"] = style["stroke"]
+                attrib["stroke-width"] = str(style["stroke_width"])
             else:
-                attrib['fill'] = 'none'
-                attrib['stroke'] = style["stroke"]
-                attrib['stroke-width'] = str(style["stroke_width"])
-            SubElement(parent, 'polygon', attrib)
+                attrib["fill"] = "none"
+                attrib["stroke"] = style["stroke"]
+                attrib["stroke-width"] = str(style["stroke_width"])
+            SubElement(parent, "polygon", attrib)
         else:
             attrib = {
-                'points': pts_str,
-                'fill': 'none',
-                'stroke': style["stroke"],
-                'stroke-width': str(style["stroke_width"]),
-                'stroke-linejoin': 'round',
-                'stroke-linecap': 'round'
+                "points": pts_str,
+                "fill": "none",
+                "stroke": style["stroke"],
+                "stroke-width": str(style["stroke_width"]),
+                "stroke-linejoin": "round",
+                "stroke-linecap": "round"
             }
-            SubElement(parent, 'polyline', attrib)
+            SubElement(parent, "polyline", attrib)
 
     print("Generating color image...")
     # create svg
-    svg = Element('svg', {
-        'xmlns': "http://www.w3.org/2000/svg",
-        'version': "1.1",
-        'width': str(textureSize * tiles),
-        'height': str(textureSize * tiles),
-        'viewBox': f"0 0 {textureSize * tiles} {textureSize * tiles}"
+    svg = Element("svg", {
+        "xmlns": "http://www.w3.org/2000/svg",
+        "version": "1.1",
+        "width": str(textureSize * tiles),
+        "height": str(textureSize * tiles),
+        "viewBox": f"0 0 {textureSize * tiles} {textureSize * tiles}"
     })
 
     defs = SubElement(svg, "defs")
@@ -328,9 +328,9 @@ def generateColor(scale, textureSize, tiles, bbox_norm, city, bounds_geom):
 
     group = SubElement(svg, "g", {"clip-path": "url(#boundsClip)"})
 
-    SubElement(group, 'rect', {
-        'x': '0', 'y': '0', 'width': str(textureSize * tiles), 'height': str(textureSize * tiles),
-        'fill': 'rgb(127,127,127)'
+    SubElement(group, "rect", {
+        "x": "0", "y": "0", "width": str(textureSize * tiles), "height": str(textureSize * tiles),
+        "fill": "rgb(127,127,127)"
     })
 
     layer_styles = {
@@ -356,7 +356,7 @@ def generateColor(scale, textureSize, tiles, bbox_norm, city, bounds_geom):
                         draw_geometry(member["geometry"], style, group, scale)
 
     # svg to png
-    cairosvg.svg2png(bytestring=tostring(svg, encoding="utf-8", xml_declaration=True).decode("utf-8"), write_to=os.path.join("public/src/osm", f"{city}_color.png"))
+    cairosvg.svg2png(bytestring=tostring(svg, encoding="utf-8", xml_declaration=True).decode("utf-8"), write_to=os.path.join("public/assets/citiesguesser", f"{city}_color.png"))
 
 def generateDisplacement(textureSize, tiles, city):
     global data
@@ -369,7 +369,7 @@ def generateDisplacement(textureSize, tiles, city):
         for j in range(textureSize * tiles):
             pixels[j, textureSize * tiles - 1 - i] = int(255 * data["terrain"][i][j][2] / (data["terrain_max_h"] - data["terrain_min_h"]))
     
-    img_displacement.save(os.path.join("public/src/osm", f"{city}_displacement.png"))
+    img_displacement.save(os.path.join("public/assets/citiesguesser", f"{city}_displacement.png"))
 
 def generateJson(scale, textureSize, tiles, city):
     global data
@@ -397,9 +397,9 @@ def generateJson(scale, textureSize, tiles, city):
     terrain = {"scale": scale, "textureSize": textureSize, "tiles": tiles, "bounds": {"minlat": data["terrain"][0][0][0], "minlon": data["terrain"][0][0][1], "maxlat": data["terrain"][0][0][0] + scale * textureSize * tiles, "maxlon": data["terrain"][0][0][1] + scale * textureSize * tiles}, "height": data["terrain_max_h"] - data["terrain_min_h"]}
     data_opt["terrain"] = terrain
 
-    if not os.path.exists("public/src/osm"):
-        os.makedirs("public/src/osm")
-    with open(os.path.join("public/src/osm", f"{city}.json"), "w") as file:
+    if not os.path.exists("public/assets/citiesguesser"):
+        os.makedirs("public/assets/citiesguesser")
+    with open(os.path.join("public/assets/citiesguesser", f"{city}.json"), "w") as file:
         file.write(json.dumps(data_opt, indent=4))
 
 def downloadData(city, api, time_limit=3600, size_limit=4096, tile_limit=4):

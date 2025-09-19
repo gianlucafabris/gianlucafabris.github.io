@@ -3,11 +3,18 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadAll } from "@tsparticles/all";
 
 //debug
-import { folder } from 'leva';
+let folder = null;
+let useLevaDebug = null;
+let useParticlesPanel = null;
+if(import.meta.env.DEV){
+    const leva = await import("leva");
+    const debug = await import("./utils/Debug.jsx");
+    folder = leva.folder;
+    useLevaDebug = debug.useLevaDebug;
+    useParticlesPanel = debug.useParticlesPanel;
+}
 
-import { useParticlesPanel, useLevaDebug } from './Utils/Debug.jsx';
-
-export default function Background2D({particlesContainer, BackgroundConfig}){
+export default function Background2D({particlesContainer, className, BackgroundConfig}){
     const [width, setWidth] = useState(window.innerWidth);
 
     useEffect(function(){
@@ -29,6 +36,7 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
     let config = {...BackgroundConfig};
 
     if(import.meta.env.DEV){
+        // debug
         config = useLevaDebug("particles", {
             autoplay: {value: BackgroundConfig.autoplay},
             background: folder({
@@ -292,7 +300,7 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
                 }, {label: "color", collapsed: true}),
                 // particles_groups: {value: BackgroundConfig.particles.groups, label: "groups"}, //particles
                 // particles_interactivity_show:{value: true, label: "Show interactivity"},
-                // particles_interactivity:{value: BackgroundConfig.particles.interactivity, label: "interactivity", render: function(get){return get('particles.particles.articles_interactivity_show');}}, //interactivity
+                // particles_interactivity:{value: BackgroundConfig.particles.interactivity, label: "interactivity", render: function(get){return get("particles.particles.articles_interactivity_show");}}, //interactivity
                 particles_links: folder({
                     particles_links_blink: {value: BackgroundConfig.particles.links.blink, label: "blink"},
                     particles_links_color: folder({
@@ -358,14 +366,14 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
                     }, {label: "gravity", collapsed: false}),
                     particles_move_outModes: folder({
                         particles_move_outModes_bottom_show: {value: true, label: "Show bottom"},
-                        particles_move_outModes_bottom: {value: BackgroundConfig.particles.move.outModes.bottom, label: "bottom", options: ["bounce", "bounce-horizontal", "bounce-vertical", "none", "out", "destroy", "split"], render: function(get){return get('particles.particles.particles_move.particles_move_outModes.particles_move_outModes_bottom_show');}},
+                        particles_move_outModes_bottom: {value: BackgroundConfig.particles.move.outModes.bottom, label: "bottom", options: ["bounce", "bounce-horizontal", "bounce-vertical", "none", "out", "destroy", "split"], render: function(get){return get("particles.particles.particles_move.particles_move_outModes.particles_move_outModes_bottom_show");}},
                         particles_move_outModes_default: {value: BackgroundConfig.particles.move.outModes.default, label: "default", options: ["bounce", "bounce-horizontal", "bounce-vertical", "none", "out", "destroy", "split"]},
                         particles_move_outModes_left_show: {value: true, label: "Show left"},
-                        particles_move_outModes_left: {value: BackgroundConfig.particles.move.outModes.left, label: "left", options: ["bounce", "bounce-horizontal", "bounce-vertical", "none", "out", "destroy", "split"], render: function(get){return get('particles.particles.particles_move.particles_move_outModes.particles_move_outModes_left_show');}},
+                        particles_move_outModes_left: {value: BackgroundConfig.particles.move.outModes.left, label: "left", options: ["bounce", "bounce-horizontal", "bounce-vertical", "none", "out", "destroy", "split"], render: function(get){return get("particles.particles.particles_move.particles_move_outModes.particles_move_outModes_left_show");}},
                         particles_move_outModes_right_show: {value: true, label: "Show right"},
-                        particles_move_outModes_right: {value: BackgroundConfig.particles.move.outModes.right, label: "right", options: ["bounce", "bounce-horizontal", "bounce-vertical", "none", "out", "destroy", "split"], render: function(get){return get('particles.particles.particles_move.particles_move_outModes.particles_move_outModes_right_show');}},
+                        particles_move_outModes_right: {value: BackgroundConfig.particles.move.outModes.right, label: "right", options: ["bounce", "bounce-horizontal", "bounce-vertical", "none", "out", "destroy", "split"], render: function(get){return get("particles.particles.particles_move.particles_move_outModes.particles_move_outModes_right_show");}},
                         particles_move_outModes_top_show: {value: true, label: "Show top"},
-                        particles_move_outModes_top: {value: BackgroundConfig.particles.move.outModes.top, label: "top", options: ["bounce", "bounce-horizontal", "bounce-vertical", "none", "out", "destroy", "split"], render: function(get){return get('particles.particles.particles_move.particles_move_outModes.particles_move_outModes_top_show');}}
+                        particles_move_outModes_top: {value: BackgroundConfig.particles.move.outModes.top, label: "top", options: ["bounce", "bounce-horizontal", "bounce-vertical", "none", "out", "destroy", "split"], render: function(get){return get("particles.particles.particles_move.particles_move_outModes.particles_move_outModes_top_show");}}
                     }, {label: "outModes", collapsed: false}),
                     particles_move_path: folder({
                         particles_move_path_clamp: {value: BackgroundConfig.particles.move.path.clamp, label: "clamp"},
@@ -374,7 +382,7 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
                         }, {label: "delay", collapsed: false}),
                         particles_move_path_enable: {value: BackgroundConfig.particles.move.path.enable, label: "enable"},
                         particles_move_path_generator_show: {value: true, label: "Show generator"},
-                        particles_move_path_generator: {value: BackgroundConfig.particles.move.path.generator, label: "generator", render: function(get){return get('particles.particles.particles_move.particles_move_path.particles_move_path_generator_show');}},
+                        particles_move_path_generator: {value: BackgroundConfig.particles.move.path.generator, label: "generator", render: function(get){return get("particles.particles.particles_move.particles_move_path.particles_move_path_generator_show");}},
                         particles_move_path_options: {value: BackgroundConfig.particles.move.path.options, label: "options"}
                     }, {label: "path", collapsed: false}),
                     particles_move_random: {value: BackgroundConfig.particles.move.random, label: "random"},
@@ -384,7 +392,7 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
                         particles_move_spin_acceleration: {value: [BackgroundConfig.particles.move.spin.acceleration.min, BackgroundConfig.particles.move.spin.acceleration.max], label: "acceleration", min: 0, max: 10, step: 0.01},
                         particles_move_spin_enable: {value: BackgroundConfig.particles.move.spin.enable, label: "enable"},
                         particles_move_spin_position_show: {value: true, label: "Show position"},
-                        particles_move_spin_position: {value: BackgroundConfig.particles.move.spin.position, label: "position", min: 0, max: 100, step: 1, render: function(get){return get('particles.particles.particles_move.particles_move_spin.particles_move_spin_position_show');}}
+                        particles_move_spin_position: {value: BackgroundConfig.particles.move.spin.position, label: "position", min: 0, max: 100, step: 1, render: function(get){return get("particles.particles.particles_move.particles_move_spin.particles_move_spin_position_show");}}
                     }, {label: "spin", collapsed: false}),
                     particles_move_straight: {value: BackgroundConfig.particles.move.straight, label: "straight"},
                     particles_move_trail: folder({
@@ -398,9 +406,9 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
                                         return acc;
                                     }, {})
                                 }, {label: "value", collapsed: false})
-                            }, {label: "color", render: function(get){return get('particles.particles.particles_move.particles_move_trail.particles_move_trail_fill.particles_move_trail_fill_color_show');}, collapsed: false}),
+                            }, {label: "color", render: function(get){return get("particles.particles.particles_move.particles_move_trail.particles_move_trail_fill.particles_move_trail_fill_color_show");}, collapsed: false}),
                             particles_move_trail_fill_image_show: {value: true, label: "Show image"},
-                            particles_move_trail_fill_image: {value: BackgroundConfig.particles.move.trail.fill.image, label: "image", render: function(get){return get('particles.particles.particles_move.particles_move_trail.particles_move_trail_fill.particles_move_trail_fill_image_show');}}
+                            particles_move_trail_fill_image: {value: BackgroundConfig.particles.move.trail.fill.image, label: "image", render: function(get){return get("particles.particles.particles_move.particles_move_trail.particles_move_trail_fill.particles_move_trail_fill_image_show");}}
                         }, {label: "fill", collapsed: false}),
                         particles_move_trail_length: {value: BackgroundConfig.particles.move.trail.length, label: "length", min: 0, max: 1000, step: 1}
                     }, {label: "trail", collapsed: false}),
@@ -448,31 +456,31 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
                                 [`particles_shape_options_${i}_fill`]: {value: opt.fill, label: "fill", render: function(get){return get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_fill_show`);}},
                                 // [`particles_shape_options_${i}_particles_show`]: {value: true, label: "Show particles"},
                                 // [`particles_shape_options_${i}_particles`]: {value: opt.particles, label: "particles", render: function(get){return get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_particles_show`);}}, //particles
-                                [`particles_shape_options_${i}_font_show`]: {value: true, label: "Show font", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "character";}},
-                                [`particles_shape_options_${i}_font`]: {value: opt.font, label: "font", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "character" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_font_show`);}},
-                                [`particles_shape_options_${i}_style_show`]: {value: true, label: "Show style", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "character";}},
-                                [`particles_shape_options_${i}_style`]: {value: opt.style, label: "style", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "character" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_style_show`);}},
-                                [`particles_shape_options_${i}_value_show`]: {value: true, label: "Show value", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "character";}},
+                                [`particles_shape_options_${i}_font_show`]: {value: true, label: "Show font", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "character";}},
+                                [`particles_shape_options_${i}_font`]: {value: opt.font, label: "font", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "character" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_font_show`);}},
+                                [`particles_shape_options_${i}_style_show`]: {value: true, label: "Show style", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "character";}},
+                                [`particles_shape_options_${i}_style`]: {value: opt.style, label: "style", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "character" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_style_show`);}},
+                                [`particles_shape_options_${i}_value_show`]: {value: true, label: "Show value", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "character";}},
                                 [`particles_shape_options_${i}_value`]: folder({
                                     ...opt.value.reduce(function(acc2, val, j){
                                         acc2[`particles_shape_options_${i}_value_${j}`] = {value: val, label: `${j}`};
                                         return acc2;
                                     }, {})
-                                }, {label: "value", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "character" && get('particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_value_show');}, collapsed: false}),
-                                [`particles_shape_options_${i}_weight_show`]: {value: true, label: "Show weight", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "character";}},
-                                [`particles_shape_options_${i}_weight`]: {value: opt.weight, label: "weight", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "character" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_weight_show`);}},
-                                [`particles_shape_options_${i}_height_show`]: {value: true, label: "Show height", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "image";}},
-                                [`particles_shape_options_${i}_height`]: {value: opt.height, label: "height", min: 0, max: Math.max(window.innerWidth, window.innerHeight), step: 1, render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "image" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_height_show`);}},
-                                [`particles_shape_options_${i}_replaceColor_show`]: {value: true, label: "Show replaceColor", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "image";}},
-                                [`particles_shape_options_${i}_replaceColor`]: {value: opt.replaceColor, label: "replaceColor", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "image" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_replaceColor_show`);}},
-                                [`particles_shape_options_${i}_src_show`]: {value: true, label: "Show src", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "image";}},
-                                [`particles_shape_options_${i}_src`]: {value: opt.src, label: "src", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "image" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_src_show`);}},
-                                [`particles_shape_options_${i}_width_show`]: {value: true, label: "Show width", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "image";}},
-                                [`particles_shape_options_${i}_width`]: {value: opt.width, label: "width", min: 0, max: Math.max(window.innerWidth, window.innerHeight), step: 1, render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "image" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_width_show`);}},
-                                [`particles_shape_options_${i}_inset_show`]: {value: true, label: "Show inset", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "star";}},
-                                [`particles_shape_options_${i}_inset`]: {value: opt.inset, label: "inset", min: 0, max: 1000, step: 1, render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "star" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_inset_show`);}},
-                                [`particles_shape_options_${i}_sides_show`]: {value: true, label: "Show sides", render: function(get){return get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "polygon" || get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "star";}},
-                                [`particles_shape_options_${i}_sides`]: {value: opt.sides, label: "sides", min: 0, max: 1000, step: 1, render: function(get){return (get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "polygon" || get('particles.particles.particles_shape.particles_shape_type.particles_shape_type_0') == "star") && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_sides_show`);}}
+                                }, {label: "value", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "character" && get("particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_value_show");}, collapsed: false}),
+                                [`particles_shape_options_${i}_weight_show`]: {value: true, label: "Show weight", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "character";}},
+                                [`particles_shape_options_${i}_weight`]: {value: opt.weight, label: "weight", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "character" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_weight_show`);}},
+                                [`particles_shape_options_${i}_height_show`]: {value: true, label: "Show height", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "image";}},
+                                [`particles_shape_options_${i}_height`]: {value: opt.height, label: "height", min: 0, max: Math.max(window.innerWidth, window.innerHeight), step: 1, render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "image" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_height_show`);}},
+                                [`particles_shape_options_${i}_replaceColor_show`]: {value: true, label: "Show replaceColor", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "image";}},
+                                [`particles_shape_options_${i}_replaceColor`]: {value: opt.replaceColor, label: "replaceColor", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "image" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_replaceColor_show`);}},
+                                [`particles_shape_options_${i}_src_show`]: {value: true, label: "Show src", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "image";}},
+                                [`particles_shape_options_${i}_src`]: {value: opt.src, label: "src", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "image" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_src_show`);}},
+                                [`particles_shape_options_${i}_width_show`]: {value: true, label: "Show width", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "image";}},
+                                [`particles_shape_options_${i}_width`]: {value: opt.width, label: "width", min: 0, max: Math.max(window.innerWidth, window.innerHeight), step: 1, render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "image" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_width_show`);}},
+                                [`particles_shape_options_${i}_inset_show`]: {value: true, label: "Show inset", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "star";}},
+                                [`particles_shape_options_${i}_inset`]: {value: opt.inset, label: "inset", min: 0, max: 1000, step: 1, render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "star" && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_inset_show`);}},
+                                [`particles_shape_options_${i}_sides_show`]: {value: true, label: "Show sides", render: function(get){return get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "polygon" || get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "star";}},
+                                [`particles_shape_options_${i}_sides`]: {value: opt.sides, label: "sides", min: 0, max: 1000, step: 1, render: function(get){return (get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "polygon" || get("particles.particles.particles_shape.particles_shape_type.particles_shape_type_0") == "star") && get(`particles.particles.particles_shape.particles_shape_options.particles_shape_options_${i}.particles_shape_options_${i}_sides_show`);}}
                             }, {label: `${i}`, collapsed: false});
                             return acc;
                         }, {})
@@ -522,7 +530,7 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
             preset_show: {value: true, label: "Show preset"},
             preset: folder({
                 ...BackgroundConfig.preset.reduce(function(acc, pre, i){
-                    acc[`preset_${i}`] = {value: pre, label: `${i}`, options: ["", "basic", "confetti", "fireworks", "stars", "snow", "bubbles", "firefly", "links", "fire", "seaAnemone", "fountain", "bigCircles", "blossomFallV1", "FlyingBat"], render: function(get){return get('particles.preset_show');}};
+                    acc[`preset_${i}`] = {value: pre, label: `${i}`, options: ["", "basic", "confetti", "fireworks", "stars", "snow", "bubbles", "firefly", "links", "fire", "seaAnemone", "fountain", "bigCircles", "blossomFallV1", "FlyingBat"], render: function(get){return get("particles.preset_show");}};
                     return acc;
                 }, {})
             }, {collapsed: true}),
@@ -555,7 +563,7 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
             zLayers: {value: BackgroundConfig.zLayers, min: 0, max: 100, step: 1}
         });
         
-        if(config == null || JSON.stringify(config) === '{}'){
+        if(config == null || JSON.stringify(config) === "{}"){
             config = {...BackgroundConfig};
         }else{
             //output fix
@@ -1227,11 +1235,11 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
                 config.particles.move.speed.max = 0.25;
                 config.particles.number.value = 60;
                 config.polygon.move.radius = 2.5;
-                config.polygon.url = "/src/img/404_small.svg";
+                config.polygon.url = "/assets/particles2D/404_small.svg";
                 config.polygon.position.x = 15;
             }else{
                 config.polygon.move.radius = 15;
-                config.polygon.url = "/src/img/404.svg";
+                config.polygon.url = "/assets/particles2D/404.svg";
                 config.polygon.position.x = 5;
             }
         }
@@ -1245,6 +1253,6 @@ export default function Background2D({particlesContainer, BackgroundConfig}){
     }, [config]);
 
     return <>
-        <Particles id={particlesContainer} particlesLoaded={particlesLoaded} options={config} />
+        <Particles id={particlesContainer} className={className} particlesLoaded={particlesLoaded} options={config} />
     </>;
 };

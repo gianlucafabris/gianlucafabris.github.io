@@ -1,18 +1,37 @@
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Environment, useTexture } from '@react-three/drei';
-import { useRef, useMemo, useEffect } from 'react';
-import * as THREE from 'three';
-import { useControls } from 'leva';
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, PerspectiveCamera, Environment, useTexture } from "@react-three/drei";
+import { useRef, useMemo, useEffect } from "react";
+import { Vector3, Vector2, Color, DoubleSide, PointLightHelper, LinearToneMapping, SRGBColorSpace } from "three";
+import { useControls } from "leva";
 
-//configs
-import SolarSystemConfig from '../Config/solarsystem.js';
+import { useFetchJson } from "../utils/Json.jsx";
 
 //debug
-import { GizmoHelper, GizmoViewport, useHelper } from '@react-three/drei';
-import { Perf } from 'r3f-perf';
-import { folder } from 'leva';
+let GizmoHelper = null;
+let GizmoViewport = null;
+let useHelper = null;
+let Perf = null;
+let folder = null;
+let useDebugFlag = null;
+let useLevaDebug = null;
+let DebugPivot = null;
+if(import.meta.env.DEV){
+    const drei = await import("@react-three/drei");
+    const f3f_perf = await import("r3f-perf");
+    const leva = await import("leva");
+    const debug = await import("../utils/Debug.jsx");
+    GizmoHelper = drei.GizmoHelper;
+    GizmoViewport = drei.GizmoViewport;
+    useHelper = drei.useHelper;
+    Perf = f3f_perf.Perf;
+    folder = leva.folder;
+    useDebugFlag = debug.useDebugFlag;
+    useLevaDebug = debug.useLevaDebug;
+    DebugPivot = debug.DebugPivot;
+}
 
-import { useDebugFlag, useLevaDebug, DebugPivot } from '../Utils/Debug.jsx';
+//configs
+let SolarSystemConfigUrl = "/assets/configs/solarsystem.json";
 
 const Planet = function({planet, config_planet, sun_direction}){
     const materialRef = useRef();
@@ -41,7 +60,7 @@ const Planet = function({planet, config_planet, sun_direction}){
         emissiveTexture: { value: textureMap.emissive_night },
         displacementTexture: { value: textureMap.displacement },
         specularTexture: { value: textureMap.specular },
-        sunDirection: { value: new THREE.Vector3(Math.cos(sun_direction), 0, -Math.sin(sun_direction)).normalize() },
+        sunDirection: { value: new Vector3(Math.cos(sun_direction), 0, -Math.sin(sun_direction)).normalize() },
     });
     
     useEffect(function(){
@@ -59,7 +78,7 @@ const Planet = function({planet, config_planet, sun_direction}){
     return <>
         <mesh>
             <sphereGeometry args={[config_planet.radius, 512, 256]} />
-            <meshPhysicalMaterial ref={materialRef} map={!textureMap.color_night ? textureMap.color : null} displacementMap={textureMap.displacement} displacementScale={textureMap.displacement ? config_planet.elevation*config_planet.elevationScale : 0} displacementBias={textureMap.displacement ? config_planet.elevationBias*config_planet.elevationScale : 0} roughnessMap={textureMap.specular} emissiveMap={textureMap.emissive} emissive={textureMap.emissive ? new THREE.Color(0xffffff) : new THREE.Color(0x000000)} emissiveIntensity={textureMap.emissive ? 0.1 : 0.0} onBeforeCompile = {function(shader){
+            <meshPhysicalMaterial ref={materialRef} map={!textureMap.color_night ? textureMap.color : null} displacementMap={textureMap.displacement} displacementScale={textureMap.displacement ? config_planet.elevation*config_planet.elevationScale : 0} displacementBias={textureMap.displacement ? config_planet.elevationBias*config_planet.elevationScale : 0} roughnessMap={textureMap.specular} emissiveMap={textureMap.emissive} emissive={textureMap.emissive ? new Color(0xffffff) : new Color(0x000000)} emissiveIntensity={textureMap.emissive ? 0.1 : 0.0} onBeforeCompile = {function(shader){
                 if(textureMap.color_night){
                     shader.uniforms.dayTexture = uniformsRef.current.dayTexture;
                     shader.uniforms.nightTexture = uniformsRef.current.nightTexture;
@@ -70,10 +89,10 @@ const Planet = function({planet, config_planet, sun_direction}){
                     if(planet.name === "Earth"){
                         shader.uniforms.displacementTexture = uniformsRef.current.displacementTexture;
                         shader.uniforms.specularTexture = uniformsRef.current.specularTexture;
-                        shader.uniforms.shallowWaterDayColor = { value: new THREE.Color(0x3a94ff) };
-                        shader.uniforms.deepWaterDayColor = { value: new THREE.Color(0x112e49) };
-                        shader.uniforms.shallowWaterNightColor = { value: new THREE.Color(0x19466f) };
-                        shader.uniforms.deepWaterNightColor = { value: new THREE.Color(0x000000) };
+                        shader.uniforms.shallowWaterDayColor = { value: new Color(0x3a94ff) };
+                        shader.uniforms.deepWaterDayColor = { value: new Color(0x112e49) };
+                        shader.uniforms.shallowWaterNightColor = { value: new Color(0x19466f) };
+                        shader.uniforms.deepWaterNightColor = { value: new Color(0x000000) };
                     }
                     // Vertex shader
                     shader.vertexShader = shader.vertexShader.replace('#include <common>', `
@@ -132,13 +151,13 @@ const Planet = function({planet, config_planet, sun_direction}){
             <meshPhysicalMaterial map={textureMap.color_atmosphere} transparent />
         </mesh> : null}
         {textureMap.color_rings ? <mesh>
-            <latheGeometry args={[[new THREE.Vector2(config_planet.radius * config_planet.ringsRange[0], 0), new THREE.Vector2(config_planet.radius * config_planet.ringsRange[1], 0)], 64]} />
-            <meshPhysicalMaterial map={textureMap.color_rings} side={THREE.DoubleSide} transparent={true} />
+            <latheGeometry args={[[new Vector2(config_planet.radius * config_planet.ringsRange[0], 0), new Vector2(config_planet.radius * config_planet.ringsRange[1], 0)], 64]} />
+            <meshPhysicalMaterial map={textureMap.color_rings} side={DoubleSide} transparent={true} />
         </mesh> : null}
     </>;
 };
 
-function Experience({planetWithSatellites, mode}){
+function Experience({solarSystemConfing: SolarSystemConfig, planetWithSatellites, mode}){
     const pointLight = useRef();
 
     const planet = mode === "satellite" ? planetWithSatellites.selectedSatellite : planetWithSatellites.selectedPlanet;
@@ -160,6 +179,7 @@ function Experience({planetWithSatellites, mode}){
     config.sun_position = 0;
     
     if(import.meta.env.DEV){
+        // debug
         config_debug = useLevaDebug("3d experience debug", {
             show_3Ddebug: {value: true, label: "show 3Ddebug"},
             show_pivotcontrols: {value: true, label: "show pivot controls"}
@@ -250,7 +270,7 @@ function Experience({planetWithSatellites, mode}){
             
         }
         
-        useHelper(useDebugFlag() && config_debug.show_3Ddebug && pointLight, THREE.PointLightHelper, config.pointLight.intensity/10, config.pointLight.color);
+        useHelper(useDebugFlag() && config_debug.show_3Ddebug && pointLight, PointLightHelper, config.pointLight.intensity/10, config.pointLight.color);
     }
 
     const sun_distance = mode === "satellite" ? planetWithSatellites.selectedPlanet.distance : config.planet.distance;
@@ -279,7 +299,7 @@ function Experience({planetWithSatellites, mode}){
         </DebugPivot> : <group position={[0, 0, 0]} rotation={[0, config.sun_position, 0]} scale={[1, 1, 1]}>
             <pointLight ref={pointLight} position={[sun_distance, 0, 0]} rotation={[0, 0, 0]} scale={[1, 1, 1]} intensity={planet.name == "Sun" ? 0 : config.pointLight.intensity} color={config.pointLight.color} />
         </group>}
-        <Environment background files={['/src/img/solarsystem/background/px.png', '/src/img/solarsystem/background/nx.png', '/src/img/solarsystem/background/py.png', '/src/img/solarsystem/background/ny.png', '/src/img/solarsystem/background/pz.png', '/src/img/solarsystem/background/nz.png']} />
+        <Environment background files={['/assets/solarsystem/background/px.png', '/assets/solarsystem/background/nx.png', '/assets/solarsystem/background/py.png', '/assets/solarsystem/background/ny.png', '/assets/solarsystem/background/pz.png', '/assets/solarsystem/background/nz.png']} />
         {import.meta.env.DEV && useDebugFlag() && config_debug.show_3Ddebug && config_debug.show_pivotcontrols ? <DebugPivot rotation={config.planet.rotation} scale={planet.radius * 0.5}>
             <Planet planet={planet} config_planet={config.planet} sun_direction={config.sun_position} />
         </DebugPivot> : <Planet planet={planet} config_planet={config.planet} sun_direction={config.sun_position} />}
@@ -288,12 +308,14 @@ function Experience({planetWithSatellites, mode}){
 };
 
 export default function SolarSystemExperience({solarSystemContainer, planet}){
+    const { data: SolarSystemConfig, loading: SolarSystemConfigLoading, error: SolarSystemConfigError } = useFetchJson(SolarSystemConfigUrl);
+    
     // TODO
     // modale (in pagina)
     // textures
     // api
     // parametri pianeta/glsl/api/altro... in leva/config
-
+    
     if(import.meta.env.DEV){
         console.log("SolarSystem experience initialized");
     }
@@ -301,14 +323,14 @@ export default function SolarSystemExperience({solarSystemContainer, planet}){
     return <>
         <div className={solarSystemContainer} style={{width: "100%", height: "calc(100vh - 2*(80px + 10px + 20px) - (48px + 20px))"}}>
             <Canvas gl={function(gl){
-                gl.toneMapping = THREE.LinearToneMapping;
+                gl.toneMapping = LinearToneMapping;
                 gl.toneMappingExposure = 1.0;
-                gl.outputColorSpace = THREE.SRGBColorSpace;
+                gl.outputColorSpace = SRGBColorSpace;
             }}>
                 <PerspectiveCamera makeDefault position={[planet.selectedSatellite?.radius*10 || planet.selectedPlanet.radius*10, 0, 0]} fov={30} near={planet.selectedSatellite?.radius/2 || planet.selectedPlanet.radius/2} far={planet.selectedSatellite?.radius*1000 || planet.selectedPlanet.radius*1000} onUpdate={function(self){
                     self.lookAt(0, 0, 0);
                 }} />
-                <Experience planetWithSatellites={planet} mode={planet.selectedSatellite ? "satellite" : "planet"} />
+                {SolarSystemConfigLoading ? /*<div>Loading...</div>*/ null : SolarSystemConfigError ? /*<div>Error loading solar system config: {SolarSystemConfigError.message}</div>*/ null : <Experience solarSystemConfing={SolarSystemConfig} planetWithSatellites={planet} mode={planet.selectedSatellite ? "satellite" : "planet"} />}
             </Canvas>
         </div>
     </>;

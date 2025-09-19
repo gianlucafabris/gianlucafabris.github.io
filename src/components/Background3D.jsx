@@ -1,6 +1,6 @@
-// import ParticleField from 'react-particles-webgl';
+// import ParticleField from "react-particles-webgl";
 
-export default function Background3D({particlesContainer, BackgroundConfig}){
+export default function Background3D({particlesContainer, className, BackgroundConfig}){
     let config = {...BackgroundConfig};
     
     // TODO particles3D
@@ -10,6 +10,6 @@ export default function Background3D({particlesContainer, BackgroundConfig}){
     // }
     
     return <>
-        {/* <ParticleField  id={particlesContainer} config={config} /> */}
+        {/* <ParticleField id={particlesContainer} className={className} config={config} /> */}
     </>;
 };

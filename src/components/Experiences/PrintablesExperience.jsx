@@ -1,17 +1,38 @@
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, OrthographicCamera, Float } from '@react-three/drei';
-import { useRef, useEffect } from 'react';
-import * as THREE from 'three';
+import { Canvas } from "@react-three/fiber";
+import { OrthographicCamera, Float } from "@react-three/drei";
+import { useRef, useEffect } from "react";
+import { DirectionalLightHelper, LinearToneMapping, SRGBColorSpace } from "three";
 
-//configs
-import PrintablesConfig from '../Config/printables.js';
+import { useFetchJson } from "../utils/Json.jsx";
 
 //debug
-import { GizmoHelper, GizmoViewport, useHelper } from '@react-three/drei';
-import { Perf } from 'r3f-perf';
-import { folder } from 'leva';
+let OrbitControls = null;
+let GizmoHelper = null;
+let GizmoViewport = null;
+let useHelper = null;
+let Perf = null;
+let folder = null;
+let useDebugFlag = null;
+let useLevaDebug = null;
+let DebugPivot = null;
+if(import.meta.env.DEV){
+    const drei = await import("@react-three/drei");
+    const f3f_perf = await import("r3f-perf");
+    const leva = await import("leva");
+    const debug = await import("../utils/Debug.jsx");
+    OrbitControls = drei.OrbitControls;
+    GizmoHelper = drei.GizmoHelper;
+    GizmoViewport = drei.GizmoViewport;
+    useHelper = drei.useHelper;
+    Perf = f3f_perf.Perf;
+    folder = leva.folder;
+    useDebugFlag = debug.useDebugFlag;
+    useLevaDebug = debug.useLevaDebug;
+    DebugPivot = debug.DebugPivot;
+}
 
-import { useDebugFlag, useLevaDebug, DebugPivot } from '../Utils/Debug.jsx';
+//configs
+let PrintablesConfigUrl = "/assets/configs/printables.json";
 
 const Printables = function({config}){
     return <Float speed={config.float.speed} rotationIntensity={config.float.rotationIntensity} floatIntensity={config.float.floatIntensity} floatingRange={config.float.floatingRange}>
@@ -28,7 +49,7 @@ const Printables = function({config}){
     </Float>;
 };
 
-function Experience(){
+function Experience({printablesConfig: PrintablesConfig}){
     const directionalLight = useRef();
     const directionalLightTarget = useRef();
 
@@ -40,12 +61,13 @@ function Experience(){
     let config = {...PrintablesConfig};
 
     if(import.meta.env.DEV){
+        // debug
         config_debug = useLevaDebug("3d experience debug", {
             show_3Ddebug: {value: true, label: "show 3Ddebug"},
             show_pivotcontrols: {value: true, label: "show pivot controls"}
         });
 
-        if(config_debug == null || JSON.stringify(config_debug) === '{}'){
+        if(config_debug == null || JSON.stringify(config_debug) === "{}"){
             config_debug = {
                 show_3Ddebug: false,
                 show_pivotcontrols: false
@@ -77,7 +99,7 @@ function Experience(){
             }, {collapsed: true})
         });
     
-        if(config == null || JSON.stringify(config) === '{}'){
+        if(config == null || JSON.stringify(config) === "{}"){
             config = {...PrintablesConfig};
         }else{
             //ouput fix
@@ -115,9 +137,8 @@ function Experience(){
             delete config.printables_color;
         }
 
-        useHelper(useDebugFlag() && config_debug.show_3Ddebug && directionalLight, THREE.DirectionalLightHelper, config.directionalLight.intensity/10, config.directionalLight.color);
+        useHelper(useDebugFlag() && config_debug.show_3Ddebug && directionalLight, DirectionalLightHelper, config.directionalLight.intensity/10, config.directionalLight.color);
     }
-
     
     useEffect(function(){
         if(directionalLight.current && directionalLightTarget.current){
@@ -128,7 +149,6 @@ function Experience(){
     // TODO leva pivotcontrols
     return <>
         {import.meta.env.DEV && useDebugFlag() ? <Perf position="bottom-left" logsPerSecond={1} chart={{hz: 1, length: 80}} antialias overClock showGraph matrixUpdate /> : null}
-        {import.meta.env.DEV && useDebugFlag() ? <OrbitControls makeDefault/> : null}
         {import.meta.env.DEV && useDebugFlag() && config_debug.show_3Ddebug ? <GizmoHelper>
             <GizmoViewport />
         </GizmoHelper> : null}
@@ -149,12 +169,15 @@ function Experience(){
             </DebugPivot>
         </> : <directionalLight ref={directionalLight} position={config.directionalLight.position} intensity={config.directionalLight.intensity} color={config.directionalLight.color} />}
         {import.meta.env.DEV && useDebugFlag() && config_debug.show_3Ddebug && config_debug.show_pivotcontrols ? <DebugPivot>
-                <Printables config={config.printables} />
-            </DebugPivot> : <Printables config={config.printables} />}
+            <Printables config={config.printables} />
+        </DebugPivot> : <Printables config={config.printables} />}
+        {import.meta.env.DEV && useDebugFlag() ? <OrbitControls makeDefault/> : null}
     </>;
 };
 
 export default function PrintablesExperience({printablesContainer}){
+    const { data: PrintablesConfig, loading: PrintablesConfigLoading, error: PrintablesConfigError } = useFetchJson(PrintablesConfigUrl);
+    
     if(import.meta.env.DEV){
         console.log("Printables experience initialized");
     }
@@ -162,14 +185,14 @@ export default function PrintablesExperience({printablesContainer}){
     return <>
         <div className={printablesContainer} style={{width: "100%", height: "390px", position: "relative", minHeight: "390px"}}>
             <Canvas gl={function(gl){
-                gl.toneMapping = THREE.LinearToneMapping;
+                gl.toneMapping = LinearToneMapping;
                 gl.toneMappingExposure = 1.0;
-                gl.outputColorSpace = THREE.SRGBColorSpace;
+                gl.outputColorSpace = SRGBColorSpace;
             }}>
                 <OrthographicCamera makeDefault position={[-3, 3, 3]} zoom={150} onUpdate={function(self){
                     self.lookAt(0, 0, 0);
                 }}/>
-                <Experience />
+                {PrintablesConfigLoading ? /*<div>Loading...</div>*/ null : PrintablesConfigError ? /*<div>Error loading printables config: {PrintablesConfigError.message}</div>*/ null : <Experience printablesConfig={PrintablesConfig} />}
             </Canvas>
         </div>
     </>;

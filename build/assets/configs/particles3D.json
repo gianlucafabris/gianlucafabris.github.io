@@ -1,0 +1,44 @@
+{
+    "showCube": false,
+    "dimension": "2D",
+    "boundaryType": "passthru",
+    "velocity": 2,
+    "antialias": true,
+    "direction": {
+        "xMin": -1,
+        "xMax": 1,
+        "yMin": -1,
+        "yMax": 1,
+        "zMin": -1,
+        "zMax": 1
+    },
+    "lines": {
+        "colorMode": "solid",
+        "color": "#ffffff",
+        "transparency": 0.39,
+        "limitConnections": false,
+        "maxConnections": 0,
+        "minDistance": 100,
+        "visible": true
+    },
+    "particles": {
+        "colorMode": "solid",
+        "color": "#ffffff",
+        "transparency": 1,
+        "shape": "circle",
+        "boundingBox": "canvas",
+        "count": 500,
+        "minSize": 0.1,
+        "maxSize": 2,
+        "visible": true
+    },
+    "cameraControls": {
+        "enabled": false,
+        "enableDamping": true,
+        "dampingFactor": 0.2,
+        "enableZoom": true,
+        "autoRotate": false,
+        "autoRotateSpeed": 0.3,
+        "resetCameraFlag": true
+    }
+}

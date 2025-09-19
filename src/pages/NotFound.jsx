@@ -1,5 +1,5 @@
-import { Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Row, Col } from "react-bootstrap";
+import { Link } from "react-router";
 
 export default function NotFound(){
     if(import.meta.env.DEV){

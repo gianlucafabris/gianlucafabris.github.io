@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "(rmdir /s /q build || rm -rf build) && vite build && node generate-static.js && npx esbuild public/src/style.css --minify --outfile=build/src/style.css && (del /f /q \"build\\src\\debug.css\" || rm -f build/src/debug.css)"
+    "build": "vite build && node post_build_script.js"
   },
   "keywords": [],
   "author": "Gianluca Fabris",
@@ -18,8 +18,8 @@
     "@tsparticles/engine": "^3.8.1",
     "@tsparticles/react": "^3.0.0",
     "bootstrap": "^5.3.7",
+    "bootstrap-icons": "^1.13.1",
     "leva": "^0.10.0",
-    "r3f-perf": "^7.2.3",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-bootstrap-icons": "^1.11.6",
@@ -28,28 +28,31 @@
     "react-helmet": "^6.1.0",
     "react-jquery-plugin": "^1.1.7",
     "react-router": "^7.7.0",
-    "spectorjs": "^0.9.30",
-    "stats-js": "^1.0.1",
     "three": "^0.178.0",
     "typed.js": "^2.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
     "esbuild": "^0.25.9",
+    "imagemin": "^9.0.1",
+    "imagemin-webp": "^8.0.0",
+    "r3f-perf": "^7.2.3",
+    "spectorjs": "^0.9.30",
+    "stats-js": "^1.0.1",
     "vite": "^7.1.4",
     "vite-plugin-glsl": "^1.5.1",
     "vite-plugin-restart": "^1.0.0"
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "defaults",
+      "not IE 11"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "last 1 edge version"
     ]
   }
 }

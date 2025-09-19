@@ -6,41 +6,38 @@ import glsl from "vite-plugin-glsl";
 export default {
     root: 'src/',
     publicDir: '../public/',
-    plugins:
-    [
+    plugins: [
         // Restart server on static/public file change
-        restart({ restart: [ '../public/**', ] }),
-
+        restart({
+            restart: [ '../public/**' ]
+        }),
         // React support
         react(),
-
         // GLSL support
         glsl(),
-
         // .js file support as if it was JSX
         {
             name: 'load+transform-js-files-as-jsx',
-            async transform(code, id)
-            {
-                if (!id.match(/src\/.*\.js$/))
+            async transform(code, id){
+                if(!id.match(/src\/.*\.js$/)){
                     return null
-
+                }
                 return transformWithEsbuild(code, id, {
                     loader: 'jsx',
                     jsx: 'automatic',
                 });
-            },
+            }
         }
     ],
-    server:
-    {
-        host: true, // Open to local network and display URL
-        open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env) // Open if it's not a CodeSandbox
+    server: {
+        host: true,
+        open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env)
     },
-    build:
-    {
-        outDir: '../build', // Output in the build/ folder
-        emptyOutDir: true, // Empty the folder first
-        sourcemap: true // Add sourcemap
-    },
+    build: {
+        outDir: '../build',
+        emptyOutDir: true,
+        sourcemap: true,
+        target: 'esnext',
+        minify: 'esbuild'
+    }
 }

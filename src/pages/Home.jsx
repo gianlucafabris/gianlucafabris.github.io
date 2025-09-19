@@ -1,11 +1,15 @@
-import { Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Row, Col } from "react-bootstrap";
+import { Link } from "react-router";
 
-import Typing from '../components/Typing.jsx';
+import Typing from "../components/Typing.jsx";
+import { useFetchJson } from "../components/utils/Json.jsx";
 
-import TypingConfig from '../components/Config/typed_home.js';
+//configs
+let TypingConfigUrl = "/assets/configs/typed_home.json";
 
 export default function Home({ typedContainer="typed" }){
+    const { data: TypingConfig, loading: TypingConfigLoading, error: TypingConfigError } = useFetchJson(TypingConfigUrl);
+    
     console.log(`
      ####  #   ##   #    # #      #    #  ####    ##   ######   ##   #####  ##### 
     #    # #  #  #  ##   # #      #    # #    #  #  #  #       #  #  #    # #    #
@@ -25,11 +29,12 @@ export default function Home({ typedContainer="typed" }){
     if(import.meta.env.DEV){
         console.log("Home page");
     }
+
     return <>
         <Row>
             <Col md={12} className="blur">
                 {/* TODELETE */}
-                <Typing typedContainer={typedContainer} TypingConfig={TypingConfig} />
+                {TypingConfigLoading ? <div>Loading...</div> : TypingConfigError ? <div>Error loading typing config: {TypingConfigError.message}</div> : <Typing typedContainer={typedContainer} TypingConfig={TypingConfig} />}
                 <style>{`
                 #typed,.typed-cursor{
                     font-size: 10em;

@@ -1,21 +1,27 @@
-import { Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Row, Col } from "react-bootstrap";
+import { Link, useLocation } from "react-router";
+import { useMemo } from "react";
 
-import { useMemo } from 'react';
-import { useLocation } from 'react-router';
+import SolarSystemExperience from "../components/experiences/SolarSystemExperience.jsx";
+import { useFetchJson } from "../components/utils/Json.jsx";
 
-import SolarSystemExperience from '../components/Experiences/SolarSystemExperience.jsx';
-
-import SolarSystemConfig from '../components/Config/solarsystem.js';
+//configs
+let SolarSystemConfigUrl = "/assets/configs/solarsystem.json";
 
 export default function SolarSystem({ solarSystemContainer="solarsystem" }){
     const location = useLocation();
     
+    const { data: SolarSystemConfig, loading: SolarSystemConfigLoading, error: SolarSystemConfigError } = useFetchJson(SolarSystemConfigUrl);
+
     const planet = useMemo(function(){
         const queryParams = new URLSearchParams(location.search);
         const planetName = queryParams.get("planet");
         const satelliteName = queryParams.get("satellite");
 
+        if(!SolarSystemConfig || SolarSystemConfigLoading || SolarSystemConfigError){
+            return { selectedPlanet: null, selectedSatellite: null };
+        }
+        
         if(!planetName){
             return { selectedPlanet: SolarSystemConfig.planets[3], selectedSatellite: null }; // fallback -> Earth
         }
@@ -24,28 +30,28 @@ export default function SolarSystem({ solarSystemContainer="solarsystem" }){
             return p.name.toLowerCase() === planetName.toLowerCase();
         });
         if(selectedPlanet == null){ // fallback -> Earth
-           selectedPlanet = SolarSystemConfig.planets[3];
+            selectedPlanet = SolarSystemConfig.planets[3];
         }
-
+        
         let selectedSatellite = null;
         if(satelliteName && selectedPlanet.satellites){
             selectedSatellite = selectedPlanet.satellites.find(function(s) {
                 return s.name.toLowerCase() === satelliteName.toLowerCase();
             });
         }
-
+        
         return { selectedPlanet: selectedPlanet, selectedSatellite: selectedSatellite };
-    }, [location.search]);
-
+    }, [location.search, SolarSystemConfig, SolarSystemConfigLoading, SolarSystemConfigError]);
+    
     if(import.meta.env.DEV){
         console.log("SolarSystem page");
     }
-
+    
     return <>
         <Row>
             <Col md={12} className="blur flex">
                 {/* TODO modale+hover */}
-                {SolarSystemConfig.planets.map(function(p, i){
+                {SolarSystemConfigLoading ? <div>Loading...</div> : SolarSystemConfigError ? <div>Error loading solar system config: {SolarSystemConfigError.message}</div> : SolarSystemConfig.planets.map(function(p, i){
                     return <div key={p.name}>
                         {p.satellites?.length > 0 ? <details>
                             <summary><Link to={`/solarsystem?planet=${p.name.toLowerCase()}`}>{p.name}</Link></summary>
@@ -61,7 +67,7 @@ export default function SolarSystem({ solarSystemContainer="solarsystem" }){
         </Row>
         <Row>
             <Col md={12}>
-                <SolarSystemExperience solarSystemContainer={solarSystemContainer} planet={planet} />
+                {SolarSystemConfigLoading ? <div>Loading...</div> : SolarSystemConfigError ? <div>Error loading solar system config: {SolarSystemConfigError.message}</div> : <SolarSystemExperience solarSystemContainer={solarSystemContainer} planet={planet} />}
             </Col>
         </Row>
     </>;

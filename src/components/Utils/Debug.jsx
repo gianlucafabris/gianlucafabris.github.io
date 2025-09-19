@@ -1,14 +1,27 @@
-import { $ as jQuery } from 'react-jquery-plugin';
-import { Container, Row, Col } from 'react-bootstrap';
-import { useEffect, useRef, useMemo, useCallback } from 'react';
-import { useLocation } from 'react-router';
+import { $ as jQuery } from "react-jquery-plugin";
+import { Container, Row, Col } from "react-bootstrap";
+import { useEffect, useRef, useMemo, useCallback } from "react";
+import { useLocation } from "react-router";
 
 //debug
-import { PivotControls } from '@react-three/drei';
-import { Leva, folder, button, useControls } from 'leva';
-import Stats from 'stats-js';
-import * as Spector from 'spectorjs';
+let PivotControls = null;
+let Leva = null;
+let useControls = null;
+let Stats = null;
+let Spector = null;
+if(import.meta.env.DEV){
+    const drei = await import("@react-three/drei");
+    const leva = await import("leva");
+    const stats_js = await import("stats-js");
+    const spector = await import("spectorjs");
+    PivotControls = drei.PivotControls;
+    Leva = leva.Leva;
+    useControls = leva.useControls;
+    Stats = stats_js.default;
+    Spector = spector.Spector;
+}
 
+// debug
 let active = false;
 
 export function useDebugFlag(){
@@ -26,18 +39,16 @@ export function DebugPivot({ children, position = [0, 0, 0], rotation = [0, 0, 0
 //Leva
 export function useLevaDebug(name, options){
     // console.log("Leva Debug Initialized", name);
-    if(import.meta.env.DEV){
-        const obj = useControls(active ? name : "", active ? options : {}, { collapsed: true }, [active]);
+    const obj = useControls(active ? name : "", active ? options : {}, { collapsed: true }, [active]);
+
+    //folder labels fix
+    setTimeout(function(){
+        jQuery(".leva-c-dosbYs").each(function(){
+            $(this).children().last().text($(this).children().last().text().split("_").pop());
+        });
+    }, 1000);
     
-        //folder labels fix
-        setTimeout(function(){
-            jQuery('.leva-c-dosbYs').each(function(){
-                $(this).children().last().text($(this).children().last().text().split("_").pop());
-            });
-        }, 1000);
-        
-        return active ? obj : {};
-    }
+    return active ? obj : {};
 };
 
 //Stats
@@ -69,14 +80,14 @@ function useStats(){
 
     useEffect(function(){
         // console.log("Stats initialized");
-        if(import.meta.env.DEV && active){
+        if(active){
             const dp = window.devicePixelRatio;
             window.devicePixelRatio = 2;
             statsRef.current = new Stats();
             stats = statsRef.current;
             window.devicePixelRatio = dp;
             jQuery("body").append(statsRef.current.dom);
-            jQuery("body").children().last().wrap("<div id='stats-js'></div>");
+            jQuery("body").children().last().wrap("<div id=\"stats-js\"></div>");
             requestRef.current = requestAnimationFrame(tick);
             return function(){
                 if(requestRef.current){
@@ -129,7 +140,7 @@ let particlesArray = [];
 export function useParticlesPanel(array){
     // console.log("Stats particles panel initialized");
     particlesArray = array;
-    if(import.meta.env.DEV && active && stats && !particlesPanel){
+    if(active && stats && !particlesPanel){
         let dp =  window.devicePixelRatio;
         window.devicePixelRatio = 2;
         let panel = new Stats.Panel("P", "#ffff7f", "#222211");
@@ -163,8 +174,8 @@ function useSpector(){
     
     useEffect(function(){
         // console.log("Spector initialized");
-        if(import.meta.env.DEV && active){
-            const spector = new Spector.Spector();
+        if(active){
+            const spector = new Spector();
             requestRef.current = requestAnimationFrame(tick);
             spector.displayUI();
             return function(){
@@ -190,14 +201,12 @@ export function Debug(){
         return queryParams.has("debug");
     }, [location.search]);
 
-    if(import.meta.env.DEV){
-        useStats();
-        useSpector();
-    }
+    useStats();
+    useSpector();
 
     return <>
-        {import.meta.env.DEV && active ? <Leva oneLineLabels={true} /> : null}
-        {import.meta.env.DEV && active ? <div id="overlay">
+        {active ? <Leva oneLineLabels={true} /> : null}
+        {active ? <div id="overlay">
             <Container>
                 <Row>
                     {Array.from({length: 12}).map(function(_, idx){

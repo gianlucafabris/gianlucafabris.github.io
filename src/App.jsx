@@ -1,82 +1,110 @@
-import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
-import { Globe2, Linkedin, Github } from 'react-bootstrap-icons';
-import { Routes, Route, NavLink, useLocation, Link } from 'react-router';
-import { Helmet } from 'react-helmet';
+import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
+import { Globe2, Linkedin, Github } from "react-bootstrap-icons";
+import { Routes, Route, NavLink, useLocation, Link } from "react-router";
+import { useMemo } from "react";
+import { Helmet } from "react-helmet";
 
-import Background2D from './components/Background2D.jsx';
-// import Background3D from './components/Background3D.jsx';
+import Background2D from "./components/Background2D.jsx";
+// import Background3D from "./components/Background3D.jsx";
+import { useFetchJson } from "./components/utils/Json.jsx";
 
 //pages
-import Home from './pages/Home.jsx';
-import Printables from './pages/Printables.jsx';
-import Thesis from './pages/Thesis.jsx';
-import SolarSystem from './pages/SolarSystem.jsx';
-import CitiesGuesser from './pages/CitiesGuesser.jsx';
-import Credits from './pages/Credits.jsx';
-import NotFound from './pages/NotFound.jsx';
-
-//configs
-import BackgroundConfig from './components/Config/particles2D.js';
-import BackgroundConfig_404 from './components/Config/particles2D_404.js';
-// import BackgroundConfig from './components/Config/particles3D.js';
-// import BackgroundConfig from './components/Config/particles3D_404.js';
+import { pages, navLinks } from "./Pages.js";
+import Home from "./pages/Home.jsx";
+import Printables from "./pages/Printables.jsx";
+import Thesis from "./pages/Thesis.jsx";
+import SolarSystem from "./pages/SolarSystem.jsx";
+import CitiesGuesser from "./pages/CitiesGuesser.jsx";
+import Credits from "./pages/Credits.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 //debug
-import { Debug } from './components/Utils/Debug.jsx';
+let Debug = null;
+if(import.meta.env.DEV){
+    const debug = await import("./components/utils/Debug.jsx");
+    Debug = debug.Debug;
+}
 
-const pages = [
-    {name: "home", title: "home", description: "WIP"},
-    {name: "printables", title: "printables", description: "a review and some possible improvements to Printable.com"},
-    {name: "thesis", title: "thesis", description: "Decreasing the Reality Gap of a Vehicle Simulation Digital Sibling Using the Addition of a Road Slope Study thesis and links"},
-    {name: "solarsystem", title: "solar system", description: "a representation of the solar system with planets and their orbits"},
-    {name: "citiesguesser", title: "cities guesser", description: "a representation of various cities with data from OpenStreetMap and you have to guess the city based on the map"},
-    {name: "credits", title: "credits", description: "credits page with links to resources used in the website"}
-];
+//configs
+let BackgroundConfigUrl = "/assets/configs/particles2D.json";
+let BackgroundConfig_404Url = "/assets/configs/particles2D_404.json";
+// let BackgroundConfigUrl = "/assets/configs/particles3D.json";
+// let BackgroundConfig_404Url = "/assets/configs/particles3D_404.json";
 
-const navLinks = [
-    {name: "printables", label: "Printables"}
-];
-
-const paths = {
-    home: ["/", "/home", "/home.html", "/index", "/index.html"],
-    printables: ["/printables", "/printables.html"],
-    thesis: ["/thesis", "/thesis.html"],
-    solarsystem: ["/solarsystem", "/solarsystem.html"],
-    citiesguesser: ["/citiesguesser", "/citiesguesser.html"],
-    credits: ["/credits", "/credits.html"]
-};
 
 export default function App(){
     const location = useLocation();
     const active = location.pathname;
+    
+    const { data: BackgroundConfig, loading: BackgroundConfigLoading, error: BackgroundConfigError } = useFetchJson(BackgroundConfigUrl);
+    const { data: BackgroundConfig_404, loading: BackgroundConfig_404Loading, error: BackgroundConfig_404Error } = useFetchJson(BackgroundConfig_404Url);
 
-    const pageInfo = pages.find(function(p){
-        return p.name === active.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '').toLowerCase() || ((active.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '').toLowerCase() === '' || active.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '').toLowerCase() === 'index') && p.name === 'home');
-    }) || { name: "404", title: "404", description: "404 Not Found" };
+    const pagesByName = pages.reduce(function(acc, page){
+        acc[page.name] = page;
+        return acc;
+    }, {});
+
+    const pageActiveUrl = active.replace(/^\/+|\/+$/g, "").replace(/\.html$/, "").toLowerCase();
+    const pageActive = pagesByName[pageActiveUrl === "" || pageActiveUrl === "index" ? "home" : pageActiveUrl] || { name: "404", title: "404", description: "404 Not Found", priority: "0.0", paths: [active] };
 
     // TODO
-    // usare + bootstrap (footer/pagine/esperienze)
+    // fix report PageSpeed Insights / tutte tab strumenti sviluppo
+    /* js code splitting/css critico
+    vite.config.js
+import { pages, navLinks } from "./src/Pages.js";
+const criticalPages = pages.flatMap(function(page){
+    return page.paths.map(function(path){return { uri: path, template: 'index' };});
+});
+plugins: [
+    critical({
+        criticalBase: '../build/',
+        criticalPages: criticalPages,
+        inline: true,
+        minify: true
+    })
+],
+build: {
+    cssCodeSplit: true,
+    rollupOptions: {
+        output: {
+            manualChunks: {
+                react: ['react', 'react-dom', 'react-router'],
+                three: ['three', '@react-three/fiber', '@react-three/drei'],
+                bootstrap: ['bootstrap', 'react-bootstrap', 'bootstrap-icons', 'react-bootstrap-icons'],
+                tsparticles: ['@tsparticles/react', '@tsparticles/engine', '@tsparticles/all'],
+                dev: ['r3f-perf', 'stats-js', 'spectorjs']
+            }
+        }
+    }
+}
+    */
+    // implementare + chatgpt refactor citiesguesser
+    // bug solarsystem witch * -> earth / earth -> *
+    // usare di più bootstrap (footer/pagine/esperienze)
     // routes rest per solarsystem es. /solarsystem/:planet/:moon
-
+    // react lazy + suspense per experiences + baackground
+    
     return <>
         <Helmet>
-            <title>Gianluca Fabris - {pageInfo.title}</title>
-            <meta name="description" content={`Gianluca Fabris website - ${pageInfo.title} page, ${pageInfo.description}`} />
+            {/* <!-- Metadata --> */}
+            <title>Gianluca Fabris - {pageActive.title}</title>
+            <meta name="description" content={`Gianluca Fabris website - ${pageActive.title} page, ${pageActive.description}`} />
             {/* <!-- Open Graph --> */}
-            <meta property="og:title" content={`Gianluca Fabris - ${pageInfo.title}`} />
-            <meta property="og:description" content={`Gianluca Fabris website - ${pageInfo.title} page, ${pageInfo.description}`} />
+            <meta property="og:title" content={`Gianluca Fabris - ${pageActive.title}`} />
+            <meta property="og:description" content={`Gianluca Fabris website - ${pageActive.title} page, ${pageActive.description}`} />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={`https://gianlucafabris.github.io/${pageInfo.name}.html`} />
+            <meta property="og:url" content={`https://gianlucafabris.github.io/${pageActive.name}.html`} />
             <meta property="og:image" content="https://gianlucafabris.github.io/src/img/background.png" />
             {/* <!-- Twitter --> */}
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content={`Gianluca Fabris - ${pageInfo.title}`} />
-            <meta name="twitter:description" content={`Gianluca Fabris website - ${pageInfo.title} page, ${pageInfo.description}`} />
+            <meta name="twitter:title" content={`Gianluca Fabris - ${pageActive.title}`} />
+            <meta name="twitter:description" content={`Gianluca Fabris website - ${pageActive.title} page, ${pageActive.description}`} />
             <meta name="twitter:image" content="https://gianlucafabris.github.io/src/img/background.png" />
+            {/* Cookies/Analytics via generate-static.js */}
         </Helmet>
         {import.meta.env.DEV ? <Debug /> : null}
-        <Background2D particlesContainer={pageInfo.name === "404" ? "particles-js_404" : "particles-js"} BackgroundConfig={pageInfo.name === "404" ? BackgroundConfig_404 : BackgroundConfig} />
-        {/* <Background3D particlesContainer={pageInfo.name === "404" ? "particles-js_404" : "particles-js"} BackgroundConfig={pageInfo.name === "404" ? BackgroundConfig_404 : BackgroundConfig} /> */}
+        {BackgroundConfigLoading || BackgroundConfig_404Loading ? <div>Loading...</div> : BackgroundConfigError || BackgroundConfig_404Error ? <div>Error loading background config: {BackgroundConfigError?.message || BackgroundConfig_404Error?.message}</div> : <Background2D particlesContainer={"particles-js"} className={pageActive.name === "404" ? "p404" : ""} BackgroundConfig={pageActive.name === "404" ? BackgroundConfig_404 : BackgroundConfig} />}
+        {/* {BackgroundConfigLoading || BackgroundConfig_404Loading ? <div>Loading...</div> : BackgroundConfigError || BackgroundConfig_404Error ? <div>Error loading background config: {BackgroundConfigError?.message || BackgroundConfig_404Error?.message}</div> : <Background3D particlesContainer={"particles-js"} className={pageActive.name === "404" ? "p404" : ""} BackgroundConfig={pageActive.name === "404" ? BackgroundConfig_404 : BackgroundConfig} />} */}
         <Container>
             <header>
                 <Row>
@@ -95,22 +123,22 @@ export default function App(){
             <main>
                 <Routes>
                     <Route index element={<Home typedContainer="typed" />} />
-                    {paths.home.map(function(path){
+                    {pagesByName["home"].paths.map(function(path){
                         return <Route key={path} path={path} element={<Home typedContainer="typed" />} />;
                     })}
-                    {paths.printables.map(function(path){
+                    {pagesByName["printables"].paths.map(function(path){
                         return <Route key={path} path={path} element={<Printables />} />;
                     })}
-                    {paths.thesis.map(function(path){
+                    {pagesByName["thesis"].paths.map(function(path){
                         return <Route key={path} path={path} element={<Thesis />} />;
                     })}
-                    {paths.solarsystem.map(function(path){
+                    {pagesByName["solarsystem"].paths.map(function(path){
                         return <Route key={path} path={path} element={<SolarSystem solarSystemContainer="solarsystem" />} />;
                     })}
-                    {paths.citiesguesser.map(function(path){
+                    {pagesByName["citiesguesser"].paths.map(function(path){
                         return <Route key={path} path={path} element={<CitiesGuesser citiesguesserContainer="citiesguesser" />} />;
                     })}
-                    {paths.credits.map(function(path){
+                    {pagesByName["credits"].paths.map(function(path){
                         return <Route key={path} path={path} element={<Credits />} />;
                     })}
                     <Route path="*" element={<NotFound />} />
@@ -139,7 +167,6 @@ export default function App(){
                 </Row>
             </footer>
         </Container>
-        <link href="/src/style.css" rel="stylesheet"/>
         {import.meta.env.DEV ? <link href="/src/debug.css" rel="stylesheet"/> : null}
     </>;
 }

@@ -1,18 +1,37 @@
-import { Canvas, useLoader } from '@react-three/fiber';
-import { OrbitControls, OrthographicCamera, PerspectiveCamera, Environment, useTexture } from '@react-three/drei';
-import { useRef, useEffect, useState, useMemo } from 'react';
-import * as THREE from 'three';
+import { Canvas, useLoader } from "@react-three/fiber";
+import { OrbitControls, OrthographicCamera, PerspectiveCamera, Environment, useTexture } from "@react-three/drei";
+import { useRef, useEffect, useState, useMemo } from "react";
+import * as THREE from "three";
 import { FileLoader } from "three";
 
-//configs
-import CitiesConfig from '../Config/citiesguesser.js';
+import { useFetchJson } from "../utils/Json.jsx";
 
 //debug
-import { GizmoHelper, GizmoViewport, useHelper } from '@react-three/drei';
-import { Perf } from 'r3f-perf';
-import { folder } from 'leva';
+// let GizmoHelper = null;
+// let GizmoViewport = null;
+// let useHelper = null;
+// let Perf = null;
+// let folder = null;
+let useDebugFlag = null;
+// let useLevaDebug = null;
+// let DebugPivot = null;
+if(import.meta.env.DEV){
+    // const drei = await import("@react-three/drei");
+    // const f3f_perf = await import("r3f-perf");
+    // const leva = await import("leva");
+    const debug = await import("../utils/Debug.jsx");
+    // GizmoHelper = drei.GizmoHelper;
+    // GizmoViewport = drei.GizmoViewport;
+    // useHelper = drei.useHelper;
+    // Perf = f3f_perf.Perf;
+    // folder = leva.folder;
+    useDebugFlag = debug.useDebugFlag;
+    // useLevaDebug = debug.useLevaDebug;
+    // DebugPivot = debug.DebugPivot;
+}
 
-import { useDebugFlag, useLevaDebug, DebugPivot } from '../Utils/Debug.jsx';
+//configs
+let CitiesGuesserConfigUrl = "/assets/configs/citiesguesser.json";
 
 function getHeightAt(terrain, hmap, lat, lon) {
     // lat/lon to row/column
@@ -77,10 +96,10 @@ function Terrain({terrain, color, displacement}){
 }
 
 function Experience({ city }){
-    const color = useTexture(`/src/osm/${city}_color.png`);
-    const displacement = useTexture(`/src/osm/${city}_displacement.png`);
+    const color = useTexture(`/assets/citiesguesser/${city}_color.png`);
+    const displacement = useTexture(`/assets/citiesguesser/${city}_displacement.png`);
 
-    const osmDatajson = useLoader(FileLoader, `/src/osm/${city}.json`);
+    const osmDatajson = useLoader(FileLoader, `/assets/citiesguesser/${city}.json`);
     const osmData = useMemo(function(){
         return JSON.parse(osmDatajson);
     }, [osmDatajson]);
@@ -119,15 +138,17 @@ function Experience({ city }){
 };
 
 export default function CitiesGuesserExperience({citiesguesserContainer}){
-    if(import.meta.env.DEV){
-        console.log("CitiesGuesser experience initialized");
-    }
+    const { data: CitiesGuesserConfig, loading: CitiesGuesserConfigLoading, error: CitiesGuesserConfigError } = useFetchJson(CitiesGuesserConfigUrl);
 
     // TODO
     // tutti parametri leva/config
     // camera in base scale*textureSize*tiles
     // supporto scale/textureSize/tiles
-
+    
+    if(import.meta.env.DEV){
+        console.log("CitiesGuesser experience initialized");
+    }
+    
     return <>
         <div className={citiesguesserContainer} style={{width: "100%", height: "calc(100vh - 2*(80px + 10px + 20px))"}}>
             <Canvas gl={function(gl){
@@ -138,7 +159,7 @@ export default function CitiesGuesserExperience({citiesguesserContainer}){
                 <PerspectiveCamera makeDefault position={[0, 10000, 10000]} fov={30} near={10} far={100000} onUpdate={function(self){
                     self.lookAt(0, 0, 0);
                 }} />
-                <Experience city={"Rome"} />
+                {CitiesGuesserConfigLoading ? /* <div>Loading...</div>*/ null : CitiesGuesserConfigError ? /*<div>Error loading cities config: {CitiesGuesserConfigError.message}</div>*/ null : <Experience city={"Rome"} />}
             </Canvas>
         </div>
     </>;

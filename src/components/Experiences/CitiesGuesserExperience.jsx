@@ -143,7 +143,8 @@ export default function CitiesGuesserExperience({citiesguesserContainer}){
     // TODO
     // tutti parametri leva/config
     // camera in base scale*textureSize*tiles
-    // supporto scale/textureSize/tiles
+    // supporto scale/textureSize/tiles\
+    // migliorare come https://map2model.com/
     
     if(import.meta.env.DEV){
         console.log("CitiesGuesser experience initialized");

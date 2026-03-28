@@ -544,3 +544,7 @@ downloadData("Rome", heightAPIs["localhost"], 3600*2, 4096, 4)
 
 # TODO
 # img color and displacement support for tiling (4096*4096 per tile and 4*4 tiles)
+# migliorare come https://map2model.com/
+# ottimizzazioni
+# - heightmap direttamente in immagine in un colpo solo (poi tagliare in base a bordi) e generare geometria -> per avere in un colpo solo modificare opentopodata es. https://chatgpt.com/c/68d144ca-8474-8325-b920-e27861b7c4fe
+# - salvare diverse geometrie per ogni colore + edifici

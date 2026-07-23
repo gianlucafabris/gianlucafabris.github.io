@@ -34,7 +34,7 @@ let BackgroundConfig_404Url = "/assets/configs/particles2D_404.json";
 export default function App(){
     const location = useLocation();
     const active = location.pathname;
-    
+
     const { data: BackgroundConfig, loading: BackgroundConfigLoading, error: BackgroundConfigError } = useFetchJson(BackgroundConfigUrl);
     const { data: BackgroundConfig_404, loading: BackgroundConfig_404Loading, error: BackgroundConfig_404Error } = useFetchJson(BackgroundConfig_404Url);
 
@@ -47,6 +47,7 @@ export default function App(){
     const pageActive = pagesByName[pageActiveUrl === "" || pageActiveUrl === "index" ? "home" : pageActiveUrl] || { name: "404", title: "404", description: "404 Not Found", priority: "0.0", paths: [active] };
 
     // TODO
+    // fix Background2D 404 and partivles debug
     // fix report PageSpeed Insights / tutte tab strumenti sviluppo
     /* js code splitting/css critico
     vite.config.js
@@ -78,11 +79,11 @@ build: {
 }
     */
     // implementare + chatgpt refactor citiesguesser
-    // bug solarsystem witch * -> earth / earth -> *
+    // bug solarsystem switch * -> earth / earth -> *
     // usare di più bootstrap (footer/pagine/esperienze)
     // routes rest per solarsystem es. /solarsystem/:planet/:moon
     // react lazy + suspense per experiences + baackground
-    
+
     return <>
         <Helmet>
             {/* <!-- Metadata --> */}

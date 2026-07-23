@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadAll } from "@tsparticles/all";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
 
 //debug
 let folder = null;
@@ -14,6 +13,15 @@ if(import.meta.env.DEV){
     useParticlesPanel = debug.useParticlesPanel;
 }
 
+async function registerParticles(engine) {
+  const [{ loadSlim }, { loadThemesPlugin }] = await Promise.all([
+    import("@tsparticles/slim"),
+    import("@tsparticles/plugin-themes"),
+  ]);
+
+  await Promise.all([loadSlim(engine), loadThemesPlugin(engine)]);
+}
+
 export default function Background2D({particlesContainer, className, BackgroundConfig}){
     const [width, setWidth] = useState(window.innerWidth);
 
@@ -25,12 +33,6 @@ export default function Background2D({particlesContainer, className, BackgroundC
         return function(){
             window.removeEventListener("resize", handleResize);
         };
-    }, []);
-
-    useEffect(function(){
-        initParticlesEngine(async function(engine){
-            await loadAll(engine);
-        });
     }, []);
 
     let config = {...BackgroundConfig};
@@ -1253,6 +1255,8 @@ export default function Background2D({particlesContainer, className, BackgroundC
     }, [config]);
 
     return <>
-        <Particles id={particlesContainer} className={className} particlesLoaded={particlesLoaded} options={config} />
+        <ParticlesProvider init={registerParticles}>
+            <Particles id={particlesContainer} className={className} particlesLoaded={particlesLoaded} options={config} />
+        </ParticlesProvider>
     </>;
 };

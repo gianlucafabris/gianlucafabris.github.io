@@ -14,9 +14,10 @@
 	"dependencies": {
 		"@react-three/drei": "^10.7.7",
 		"@react-three/fiber": "^9.5.0",
-		"@tsparticles/all": "latest",
 		"@tsparticles/engine": "latest",
+		"@tsparticles/plugin-themes": "latest",
 		"@tsparticles/react": "latest",
+		"@tsparticles/slim": "latest",
 		"bootstrap": "latest",
 		"bootstrap-icons": "latest",
 		"jquery": "latest",

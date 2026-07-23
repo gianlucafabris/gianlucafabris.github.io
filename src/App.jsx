@@ -14,7 +14,6 @@ import Home from "./pages/Home.jsx";
 import Printables from "./pages/Printables.jsx";
 import Thesis from "./pages/Thesis.jsx";
 import SolarSystem from "./pages/SolarSystem.jsx";
-import CitiesGuesser from "./pages/CitiesGuesser.jsx";
 import Credits from "./pages/Credits.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
@@ -134,9 +133,6 @@ build: {
                     })}
                     {pagesByName["solarsystem"].paths.map(function(path){
                         return <Route key={path} path={path} element={<SolarSystem solarSystemContainer="solarsystem" />} />;
-                    })}
-                    {pagesByName["citiesguesser"].paths.map(function(path){
-                        return <Route key={path} path={path} element={<CitiesGuesser citiesguesserContainer="citiesguesser" />} />;
                     })}
                     {pagesByName["credits"].paths.map(function(path){
                         return <Route key={path} path={path} element={<Credits />} />;

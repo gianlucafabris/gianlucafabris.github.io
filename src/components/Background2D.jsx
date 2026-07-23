@@ -26,7 +26,7 @@ export default function Background2D({particlesContainer, className, BackgroundC
             window.removeEventListener("resize", handleResize);
         };
     }, []);
-    
+
     useEffect(function(){
         initParticlesEngine(async function(engine){
             await loadAll(engine);
@@ -562,7 +562,7 @@ export default function Background2D({particlesContainer, className, BackgroundC
             }, {collapsed: true}),
             zLayers: {value: BackgroundConfig.zLayers, min: 0, max: 100, step: 1}
         });
-        
+
         if(config == null || JSON.stringify(config) === "{}"){
             config = {...BackgroundConfig};
         }else{
@@ -863,7 +863,7 @@ export default function Background2D({particlesContainer, className, BackgroundC
             });
             BackgroundConfig.particles.color.value.map(function(val, i){
                 delete config[`particles_color_value_${i}`];
-            });     
+            });
             // config.particles.groups = config.particles_groups; //particles
             config.particles.groups = BackgroundConfig.particles.groups;
             // delete config.particles_groups;
@@ -1151,7 +1151,7 @@ export default function Background2D({particlesContainer, className, BackgroundC
                 obj.color.value = str.color.value.map(function(val, j){
                     return config[`particles_stroke_${i}_color_value_${j}`];
                 });
-                obj.opacity = {};            
+                obj.opacity = {};
                 obj.opacity.min = config[`particles_stroke_${i}_opacity_show`] ? config[`particles_stroke_${i}_opacity`][0] : null;
                 obj.opacity.max = config[`particles_stroke_${i}_opacity_show`] ? config[`particles_stroke_${i}_opacity`][1] : null;
                 obj.width = {};

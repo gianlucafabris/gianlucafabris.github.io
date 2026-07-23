@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /src/
-Allow: /
-
-Sitemap: https://gianlucafabris.github.io/sitemap.xml

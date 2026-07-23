@@ -1,6 +1,8 @@
 {
 	"name": "gianlucafabris",
 	"version": "1.0.0",
+	"author": "Gianluca Fabris",
+	"license": "CC-BY-4.0",
 	"description": "Gianluca Fabris website",
 	"homepage": "https://gianlucafabris.github.io/",
 	"type": "module",
@@ -9,8 +11,6 @@
 		"build": "vite build && node post_build_script.js"
 	},
 	"keywords": [],
-	"author": "Gianluca Fabris",
-	"license": "CC-BY-4.0",
 	"dependencies": {
 		"@react-three/drei": "^10.7.7",
 		"@react-three/fiber": "^9.5.0",
@@ -35,24 +35,13 @@
 	"devDependencies": {
 		"@vitejs/plugin-react": "latest",
 		"esbuild": "latest",
-		"imagemin": "latest",
-		"imagemin-webp": "latest",
+		"globby": "^16.2.2",
 		"r3f-perf": "latest",
+		"sharp": "latest",
 		"spectorjs": "latest",
 		"stats-js": "latest",
 		"vite": "latest",
 		"vite-plugin-glsl": "latest"
 	},
-	"browserslist": {
-		"production": [
-			"defaults",
-			"not IE 11"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version",
-			"last 1 edge version"
-		]
-	}
+	"packageManager": "yarn@4.17.1"
 }

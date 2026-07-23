@@ -2,8 +2,9 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { globby } from "globby";
-import imagemin from "imagemin";
-import imageminWebp from "imagemin-webp";
+// import imagemin from "imagemin";
+// import imageminWebp from "imagemin-webp";
+import sharp from "sharp";
 import { build } from "esbuild";
 import { execSync } from "child_process";
 
@@ -15,7 +16,7 @@ import { pages, navLinks } from "./src/Pages.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let index = fs.readFileSync(path.join(__dirname, "build", "index.html"), "utf8");
+let index = fs.readFileSync(path.join(__dirname, "dist", "index.html"), "utf8");
 
 const header = `<!-- Cookies/Analytics -->
     <!-- Iubenda -->
@@ -41,7 +42,7 @@ const header = `<!-- Cookies/Analytics -->
 
 const result = index.replace("</head>", header);
 
-fs.writeFileSync(path.join(__dirname, "build", "index.html"), result);
+fs.writeFileSync(path.join(__dirname, "dist", "index.html"), result);
 console.log(`📄 index.html`);
 
 // Static pages
@@ -99,28 +100,31 @@ pages.forEach(function(page){
 
     const result = template.replace("</head>", header).replace("{{name}}", page.name).replace("{{navbar}}", navbar).replace("{{content}}", content);
 
-    fs.writeFileSync(path.join(__dirname, "build", `${page.name}.html`), result);
+    fs.writeFileSync(path.join(__dirname, "dist", `${page.name}.html`), result);
     console.log(`📄 ${page.name}.html`);
 });
 
 // Optimize images
 
-const imgs = await globby(["build/src/img/**/*.{jpg,jpeg,png}", "!build/src/img/favicon/**"]);
+const imgs = await globby(["dist/src/img/**/*.{jpg,jpeg,png}", "!dist/src/img/favicon/**"]);
 
 imgs.forEach(async function(img){
-    const buffer = fs.readFileSync(img);
-    const result = await imagemin.buffer(buffer, { plugins: [imageminWebp({ quality: 75 })] });
+    // const buffer = fs.readFileSync(img);
+    // const result = await imagemin.buffer(buffer, { plugins: [imageminWebp({ quality: 75 })] });
+    //
+    // const outFile = img.replace(/\.(jpg|jpeg|png)$/i, ".webp");
+    // fs.writeFileSync(outFile, result);
 
     const outFile = img.replace(/\.(jpg|jpeg|png)$/i, ".webp");
-    fs.writeFileSync(outFile, result);
+    await sharp(img) .webp({ quality: 75 }).toFile(outFile);
 
     console.log(`🖼️ ${path.basename(outFile)}`);
 });
 
 // Optimize css
 
-await build({ entryPoints: ["public/src/style.css"], outfile: "build/src/style.css", minify: true, bundle: false });
-execSync(`(del /f /q "build\\src\\debug.css" || rm -f build/src/debug.css)`, { stdio: "inherit" });
+await build({ entryPoints: ["public/src/style.css"], outfile: "dist/src/style.css", minify: true, bundle: false });
+execSync(`(del /f /q "dist\\src\\debug.css" || rm -f dist/src/debug.css)`, { stdio: "inherit" });
 console.log("🎨 style.css minified and debug.css removed");
 
 // Sitemap
@@ -141,7 +145,7 @@ pages.forEach(function(page){
 
 sitemap += `</urlset>`;
 
-fs.writeFileSync(path.join(__dirname, "build", "sitemap.xml"), sitemap, "utf8");
+fs.writeFileSync(path.join(__dirname, "dist", "sitemap.xml"), sitemap, "utf8");
 console.log("🤖 sitemap.xml");
 
 // Robots
@@ -152,5 +156,5 @@ Allow: /
 
 Sitemap: https://gianlucafabris.github.io/sitemap.xml`;
 
-fs.writeFileSync(path.join(__dirname, "build", "robots.txt"), robots, "utf8");
+fs.writeFileSync(path.join(__dirname, "dist", "robots.txt"), robots, "utf8");
 console.log("🤖 robots.txt");

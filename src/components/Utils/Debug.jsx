@@ -156,7 +156,7 @@ export function useParticlesPanel(array){
 
 function updateParticlesPanel(){
     if(particlesPanel){
-        particlesPanel.update(particlesArray.length, 1000);
+        particlesPanel.update(particlesArray.count, 1000);
     }
 }
 
@@ -202,7 +202,7 @@ export function Debug(){
     }, [location.search]);
 
     useStats();
-    useSpector();
+    // useSpector();
 
     return <>
         {active ? <Leva oneLineLabels={true} /> : null}

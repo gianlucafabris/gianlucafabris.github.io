@@ -1,5 +1,38 @@
 import { useState, useEffect, useCallback } from "react";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+// from @tsparticles/all
+import { loadThemesPlugin } from "@tsparticles/plugin-themes";
+import { loadPolygonMaskPlugin } from "@tsparticles/plugin-polygon-mask";
+// import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+// import { loadAbsorbersPlugin } from "@tsparticles/plugin-absorbers";
+// import { loadExportImagePlugin } from "@tsparticles/plugin-export-image";
+// import { loadExportJSONPlugin } from "@tsparticles/plugin-export-json";
+// import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
+// import { loadBackgroundMaskPlugin } from "@tsparticles/plugin-background-mask";
+// import { loadMotionPlugin } from "@tsparticles/plugin-motion";
+// import { loadTextShape } from "@tsparticles/shape-text";
+// import { loadImageShape } from "@tsparticles/shape-image";
+// import { loadEmojiShape } from "@tsparticles/shape-emoji";
+// import { loadRollUpdater } from "@tsparticles/updater-roll";
+// import { loadTiltUpdater } from "@tsparticles/updater-tilt";
+// import { loadTwinkleUpdater } from "@tsparticles/updater-twinkle";
+// import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
+// import { loadTrailMover } from "@tsparticles/move-trail";
+// import { loadExternalTrailInteraction } from "@tsparticles/interaction-external-trail";
+// import { loadExternalDragInteraction } from "@tsparticles/interaction-external-drag";
+// import { loadRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
+// import { loadEasingBack } from "@tsparticles/easing-back";
+// import { loadEasingBounce } from "@tsparticles/easing-bounce";
+// import { loadEasingCirc } from "@tsparticles/easing-circ";
+// import { loadEasingCubic } from "@tsparticles/easing-cubic";
+// import { loadEasingElastic } from "@tsparticles/easing-elastic";
+// import { loadEasingExpo } from "@tsparticles/easing-expo";
+// import { loadEasingGaussian } from "@tsparticles/easing-gaussian";
+// import { loadEasingQuart } from "@tsparticles/easing-quart";
+// import { loadEasingQuint } from "@tsparticles/easing-quint";
+// import { loadEasingSine } from "@tsparticles/easing-sine";
+// import { loadEasingSmoothstep } from "@tsparticles/easing-smoothstep";
 
 //debug
 let folder = null;
@@ -14,12 +47,46 @@ if(import.meta.env.DEV){
 }
 
 async function registerParticles(engine) {
-  const [{ loadSlim }, { loadThemesPlugin }] = await Promise.all([
-    import("@tsparticles/slim"),
-    import("@tsparticles/plugin-themes"),
-  ]);
-
-  await Promise.all([loadSlim(engine), loadThemesPlugin(engine)]);
+    await Promise.all([
+        loadSlim(engine),
+        // Plugins
+        loadThemesPlugin(engine),
+        loadPolygonMaskPlugin(engine),
+        // loadEmittersPlugin(engine),
+        // loadAbsorbersPlugin(engine),
+        // loadMotionPlugin(engine),
+        // loadCanvasMaskPlugin(engine),
+        // loadBackgroundMaskPlugin(engine),
+        // loadExportImagePlugin(engine),
+        // loadExportJSONPlugin(engine),
+        // Shapes
+        // loadTextShape(engine),
+        // loadImageShape(engine),
+        // loadEmojiShape(engine),
+        // Interactions
+        // loadExternalTrailInteraction(engine),
+        // loadExternalDragInteraction(engine),
+        // loadRepulseInteraction(engine),
+        // Updaters
+        // loadRollUpdater(engine),
+        // loadTiltUpdater(engine),
+        // loadTwinkleUpdater(engine),
+        // loadWobbleUpdater(engine),
+        // Movement
+        // loadTrailMover(engine),
+        // Easing
+        // loadEasingBack(engine),
+        // loadEasingBounce(engine),
+        // loadEasingCirc(engine),
+        // loadEasingCubic(engine),
+        // loadEasingElastic(engine),
+        // loadEasingExpo(engine),
+        // loadEasingGaussian(engine),
+        // loadEasingQuart(engine),
+        // loadEasingQuint(engine),
+        // loadEasingSine(engine),
+        // loadEasingSmoothstep(engine),
+    ]);
 }
 
 export default function Background2D({particlesContainer, className, BackgroundConfig}){
@@ -1250,7 +1317,7 @@ export default function Background2D({particlesContainer, className, BackgroundC
     const particlesLoaded = useCallback(async function(container){
         if(import.meta.env.DEV){
             console.log("Particles initialized");
-            useParticlesPanel(container.particles._array);
+            useParticlesPanel(container.particles);
         }
     }, [config]);
 

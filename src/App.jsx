@@ -47,8 +47,8 @@ export default function App(){
     const pageActive = pagesByName[pageActiveUrl === "" || pageActiveUrl === "index" ? "home" : pageActiveUrl] || { name: "404", title: "404", description: "404 Not Found", priority: "0.0", paths: [active] };
 
     // TODO
-    // fix Background2D 404 and partivles debug
-    // fix report PageSpeed Insights / tutte tab strumenti sviluppo
+    // - Particles3D
+    // - fix report PageSpeed Insights / tutte tab strumenti sviluppo
     /* js code splitting/css critico
     vite.config.js
 import { pages, navLinks } from "./src/Pages.js";
@@ -78,11 +78,11 @@ build: {
     }
 }
     */
-    // implementare + chatgpt refactor citiesguesser
-    // bug solarsystem switch * -> earth / earth -> *
-    // usare di più bootstrap (footer/pagine/esperienze)
-    // routes rest per solarsystem es. /solarsystem/:planet/:moon
-    // react lazy + suspense per experiences + baackground
+    // - implementare + chatgpt refactor citiesguesser
+    // - bug solarsystem switch * -> earth / earth -> * asset * tranne color (e.g. roughness)
+    // - usare di più bootstrap (footer/pagine/esperienze)
+    // - routes rest per solarsystem es. /solarsystem/:planet/:moon
+    // - react lazy + suspense per experiences + baackground
 
     return <>
         <Helmet>

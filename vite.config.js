@@ -25,7 +25,9 @@ export default defineConfig({
         open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env),
         watch: {
             // Restart server on static/public file change
-            ignored: ['!../public/**']
+            ignored: ['!../public/**'],
+            usePolling: true,
+            interval: 100
         }
     },
     build: {

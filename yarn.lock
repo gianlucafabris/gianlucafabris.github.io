@@ -1621,6 +1621,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tsparticles/plugin-polygon-mask@npm:^4.3.2":
+  version: 4.3.2
+  resolution: "@tsparticles/plugin-polygon-mask@npm:4.3.2"
+  peerDependencies:
+    "@tsparticles/engine": 4.3.2
+  checksum: 10c0/488fd1020c0bec5e73f399ae868786ecffe4b0b7ee673b07efe1fc61036b4e32aa3ff572a548486539954169d1d19ef65311f32debdb3b4ca18900fa35065c3f
+  languageName: node
+  linkType: hard
+
 "@tsparticles/plugin-rgb-color@npm:4.3.2":
   version: 4.3.2
   resolution: "@tsparticles/plugin-rgb-color@npm:4.3.2"
@@ -2399,6 +2408,7 @@ __metadata:
     "@react-three/drei": "npm:^10.7.7"
     "@react-three/fiber": "npm:^9.5.0"
     "@tsparticles/engine": "npm:latest"
+    "@tsparticles/plugin-polygon-mask": "npm:^4.3.2"
     "@tsparticles/plugin-themes": "npm:latest"
     "@tsparticles/react": "npm:latest"
     "@tsparticles/slim": "npm:latest"

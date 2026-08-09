@@ -202,7 +202,7 @@ export function Debug(){
     }, [location.search]);
 
     useStats();
-    // useSpector();
+    useSpector();
 
     return <>
         {active ? <Leva oneLineLabels={true} /> : null}

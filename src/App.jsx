@@ -5,7 +5,6 @@ import { useMemo } from "react";
 import { Helmet } from "react-helmet";
 
 import Background2D from "./components/Background2D.jsx";
-// import Background3D from "./components/Background3D.jsx";
 import { useFetchJson } from "./components/utils/Json.jsx";
 
 //pages
@@ -27,9 +26,6 @@ if(import.meta.env.DEV){
 //configs
 let BackgroundConfigUrl = "/assets/configs/particles2D.json";
 let BackgroundConfig_404Url = "/assets/configs/particles2D_404.json";
-// let BackgroundConfigUrl = "/assets/configs/particles3D.json";
-// let BackgroundConfig_404Url = "/assets/configs/particles3D_404.json";
-
 
 export default function App(){
     const location = useLocation();
@@ -47,42 +43,11 @@ export default function App(){
     const pageActive = pagesByName[pageActiveUrl === "" || pageActiveUrl === "index" ? "home" : pageActiveUrl] || { name: "404", title: "404", description: "404 Not Found", priority: "0.0", paths: [active] };
 
     // TODO
-    // - Particles3D
     // - fix report PageSpeed Insights / tutte tab strumenti sviluppo
-    /* js code splitting/css critico
-    vite.config.js
-import { pages, navLinks } from "./src/Pages.js";
-const criticalPages = pages.flatMap(function(page){
-    return page.paths.map(function(path){return { uri: path, template: 'index' };});
-});
-plugins: [
-    critical({
-        criticalBase: '../build/',
-        criticalPages: criticalPages,
-        inline: true,
-        minify: true
-    })
-],
-build: {
-    cssCodeSplit: true,
-    rollupOptions: {
-        output: {
-            manualChunks: {
-                react: ['react', 'react-dom', 'react-router'],
-                three: ['three', '@react-three/fiber', '@react-three/drei'],
-                bootstrap: ['bootstrap', 'react-bootstrap', 'bootstrap-icons', 'react-bootstrap-icons'],
-                tsparticles: ['@tsparticles/react', '@tsparticles/engine', '@tsparticles/all'],
-                dev: ['r3f-perf', 'stats-js', 'spectorjs']
-            }
-        }
-    }
-}
-    */
-    // - implementare + chatgpt refactor citiesguesser
     // - bug solarsystem switch * -> earth / earth -> * asset * tranne color (e.g. roughness)
-    // - usare di più bootstrap (footer/pagine/esperienze)
     // - routes rest per solarsystem es. /solarsystem/:planet/:moon
-    // - react lazy + suspense per experiences + baackground
+    // - usare di più bootstrap (footer/pagine/esperienze)
+    // - react lazy + suspense per experiences + background
 
     return <>
         <Helmet>
@@ -104,7 +69,6 @@ build: {
         </Helmet>
         {import.meta.env.DEV ? <Debug /> : null}
         {BackgroundConfigLoading || BackgroundConfig_404Loading ? <div>Loading...</div> : BackgroundConfigError || BackgroundConfig_404Error ? <div>Error loading background config: {BackgroundConfigError?.message || BackgroundConfig_404Error?.message}</div> : <Background2D particlesContainer={"particles-js"} className={pageActive.name === "404" ? "p404" : ""} BackgroundConfig={pageActive.name === "404" ? BackgroundConfig_404 : BackgroundConfig} />}
-        {/* {BackgroundConfigLoading || BackgroundConfig_404Loading ? <div>Loading...</div> : BackgroundConfigError || BackgroundConfig_404Error ? <div>Error loading background config: {BackgroundConfigError?.message || BackgroundConfig_404Error?.message}</div> : <Background3D particlesContainer={"particles-js"} className={pageActive.name === "404" ? "p404" : ""} BackgroundConfig={pageActive.name === "404" ? BackgroundConfig_404 : BackgroundConfig} />} */}
         <Container>
             <header>
                 <Row>

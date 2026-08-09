@@ -30,6 +30,15 @@ export default function Home({ typedContainer="typed" }){
         console.log("Home page");
     }
 
+    // TODO
+    // - idea 1: lati alternati testo e "icona grossa" 3d
+    // - idea 2: time line esperienze/progetti (cv) -> 3D?
+    // - idea 3 ###BEST###: ~ https://bruno-simon.com/ / ~ art of rally
+    //                      - timeline esperienze (cv) - eventulamente scansione 3D
+    //                      - garage - cambia macchina
+    //                      - progetti - pc con linguaggi
+    //                      - ???
+    //                      - (rimuovere solarsystem e nascondere printables)
     return <>
         <Row>
             <Col md={12} className="blur">

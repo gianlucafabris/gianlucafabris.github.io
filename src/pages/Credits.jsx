@@ -22,13 +22,6 @@ export default function Credits(){
                         <li><Link to="https://www.solarsystemscope.com/" target="_blank">solarsystemscope</Link></li>
                     </ul>
                 </p>
-                <h2><Link to="/citiesguesser">Cities</Link></h2>
-                <p>
-                    <ul>
-                        <li><Link to="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</Link></li>
-                        <li><Link to="https://www.opentopodata.org/" target="_blank">Open Topo Data</Link></li>
-                    </ul>
-                </p>
             </Col>
         </Row>
     </>;
